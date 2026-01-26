@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/CMakeFiles/picotoolBuild"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/CMakeFiles/picotoolBuild.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/CMakeFiles/picotoolBuild-complete.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/picotool/src/picotoolBuild-stamp/picotoolBuild-build.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/picotool/src/picotoolBuild-stamp/picotoolBuild-configure.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/picotool/src/picotoolBuild-stamp/picotoolBuild-download.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/picotool/src/picotoolBuild-stamp/picotoolBuild-install.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/picotool/src/picotoolBuild-stamp/picotoolBuild-mkdir.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/picotool/src/picotoolBuild-stamp/picotoolBuild-patch.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/picotool/src/picotoolBuild-stamp/picotoolBuild-test.rule"
+		},
+		{
+			"file" : "C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/picotool/src/picotoolBuild-stamp/picotoolBuild-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"picotoolBuild"
+		],
+		"name" : "picotoolBuild"
+	}
+}

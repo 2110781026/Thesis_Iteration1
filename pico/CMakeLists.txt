@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 # This imports the Pico SDK using your environment variable
-include($ENV{PICO_SDK_PATH}/external/pico_sdk_import.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/pico-sdk/external/pico_sdk_import.cmake)
 
 project(key_latency C CXX ASM)
 
