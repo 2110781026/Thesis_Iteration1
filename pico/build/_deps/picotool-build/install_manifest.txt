@@ -1,6 +1,6 @@
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/_deps/picotool/picotool.exe
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/_deps/picotool/picotoolTargets.cmake
-C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/_deps/picotool/picotoolTargets-release.cmake
+C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/_deps/picotool/picotoolTargets-debug.cmake
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/_deps/picotool/picotoolConfig.cmake
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/_deps/picotool/picotoolConfigVersion.cmake
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/_deps/picotool/enc_bootloader.elf

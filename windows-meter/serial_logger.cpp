@@ -6,7 +6,7 @@
 #include <atomic>
 
 // Set this to match your Pico COM port
-const std::string COM_PORT = "COM5";
+const std::string COM_PORT = "COM9";
 const DWORD BAUD_RATE = 115200;
 
 std::atomic<bool> running(true);
