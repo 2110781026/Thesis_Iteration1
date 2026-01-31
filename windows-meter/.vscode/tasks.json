@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build RawInput Logger",
+      "type": "shell",
+      "command": "cl.exe",
+      "args": [
+        "main.cpp",
+        "/Fe:keylogger.exe",
+        "user32.lib"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}
