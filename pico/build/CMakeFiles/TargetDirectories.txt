@@ -1,6 +1,4 @@
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/CMakeFiles/key_latency.dir
-C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/CMakeFiles/picotoolForceReconfigure.dir
-C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/CMakeFiles/picotoolBuild.dir
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/CMakeFiles/edit_cache.dir
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/CMakeFiles/rebuild_cache.dir
 C:/MasterarbeitFinal/Iteration 1/Thesis_Iteration1/pico/build/pico-sdk/CMakeFiles/edit_cache.dir
