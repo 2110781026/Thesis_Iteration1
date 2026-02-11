@@ -3,30 +3,37 @@
 #include "hardware/gpio.h"
 #include "pico/time.h"
 
-#define MAX_PRESSES 500
-#define PRESS_GPIO 15
-#define EVENT_QUEUE_SIZE 128  // increase to 256+ if needed
-#define PRESS_INTERVAL_MS 50  // key repeat interval
-#define PRESS_DURATION_MS 2  // how long the key stays "down"
+#define EVENT_QUEUE_SIZE 128  // must be a power of two (128, 256, 512...)
+#define PRESS_INTERVAL_MS 150  // interval between actuations
+#define PRESS_DURATION_MS 50   // how long the pin stays "active"
 
-uint32_t press_count = 0;
-// Ring buffer for timestamps
+// Pins to actuate in order
+static const uint8_t press_pins[] = {0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15};
+#define NUM_PINS (sizeof(press_pins) / sizeof(press_pins[0]))
+
+// Ring buffer for timestamps + which pin fired
+typedef struct {
+    uint64_t ts_us;
+    uint8_t  gpio;
+} event_t;
+
 static volatile uint32_t q_write = 0;
-static volatile uint32_t q_read = 0;
-static uint64_t event_queue[EVENT_QUEUE_SIZE];
+static volatile uint32_t q_read  = 0;
+static event_t event_queue[EVENT_QUEUE_SIZE];
 static volatile uint32_t dropped = 0;
 
-static inline void queue_push(uint64_t ts_us) {
+static inline void queue_push(uint64_t ts_us, uint8_t gpio) {
     uint32_t next = (q_write + 1) & (EVENT_QUEUE_SIZE - 1);
     if (next == q_read) {
         dropped++;
         return;
     }
-    event_queue[q_write] = ts_us;
+    event_queue[q_write].ts_us = ts_us;
+    event_queue[q_write].gpio  = gpio;
     q_write = next;
 }
 
-static inline bool queue_pop(uint64_t* out) {
+static inline bool queue_pop(event_t* out) {
     if (q_read == q_write) return false;
     *out = event_queue[q_read];
     q_read = (q_read + 1) & (EVENT_QUEUE_SIZE - 1);
@@ -35,36 +42,49 @@ static inline bool queue_pop(uint64_t* out) {
 
 int main() {
     stdio_init_all();
-    sleep_ms(20000);  // allow USB host to connect
+    sleep_ms(2000);  // allow USB host to connect
 
-    gpio_init(PRESS_GPIO);
-    gpio_set_dir(PRESS_GPIO, GPIO_OUT);
-    gpio_put(PRESS_GPIO, 1);  // idle high
+    // Init all pins as outputs, idle high
+    for (size_t i = 0; i < NUM_PINS; i++) {
+        gpio_init(press_pins[i]);
+        gpio_set_dir(press_pins[i], GPIO_OUT);
+        gpio_put(press_pins[i], 1);
+    }
 
-    printf("Pico GPIO timestamp firmware with buffer started. GPIO%d active every %d ms\n",
-           PRESS_GPIO, PRESS_INTERVAL_MS);
+    printf("Pico multi-GPIO actuator started. Interval=%d ms, duration=%d ms\n",
+           PRESS_INTERVAL_MS, PRESS_DURATION_MS);
 
     absolute_time_t next_press = make_timeout_time_ms(PRESS_INTERVAL_MS);
     absolute_time_t next_heartbeat = make_timeout_time_ms(1000);
 
-    while (press_count < MAX_PRESSES) {
-        // Handle periodic press
+    size_t pin_index = 0;
+
+    while (true) {
+        // Handle periodic actuation
         if (absolute_time_diff_us(get_absolute_time(), next_press) <= 0) {
+            uint8_t pin = press_pins[pin_index];
             uint64_t ts = time_us_64();
-            gpio_put(PRESS_GPIO, 0);  // simulate keypress
-            queue_push(ts);
-            sleep_ms(PRESS_DURATION_MS);  // hold press
-            gpio_put(PRESS_GPIO, 1);      // release key
-            
-            press_count++;
-            
+
+            // active low pulse
+            gpio_put(pin, 0);
+            queue_push(ts, pin);
+            sleep_ms(PRESS_DURATION_MS);
+            gpio_put(pin, 1);
+
+            // next pin (wrap)
+            pin_index++;
+            if (pin_index >= NUM_PINS) pin_index = 0;
+
+            // schedule next
             next_press = delayed_by_ms(next_press, PRESS_INTERVAL_MS);
         }
 
         // Drain log buffer to serial
-        uint64_t ev;
+        event_t ev;
         while (queue_pop(&ev)) {
-            printf("%llu us\n", (unsigned long long)ev);
+            printf("%llu us GPIO%u\n",
+                   (unsigned long long)ev.ts_us,
+                   (unsigned)ev.gpio);
         }
 
         // Periodic heartbeat
@@ -73,6 +93,6 @@ int main() {
             next_heartbeat = delayed_by_ms(next_heartbeat, 1000);
         }
 
-        tight_loop_contents();  // yield efficiently
+        tight_loop_contents();
     }
 }
