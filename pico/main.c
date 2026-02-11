@@ -5,10 +5,17 @@
 
 #define EVENT_QUEUE_SIZE 128  // must be a power of two (128, 256, 512...)
 #define PRESS_INTERVAL_MS 150  // interval between actuations
-#define PRESS_DURATION_MS 50   // how long the pin stays "active"
+#define PRESS_DURATION_MS 500   // how long the pin stays "active"
+
+//Erste Messung mit Bildern von Osci war im bereich 15 und 5 us bilder: 0-3
+//Zweite Messung mit bidern 1500 und 500 us bild 4 => ein Pulsweiter trigger außerhalb der erlaubten Periodendauer wurde gesetzt. Dieser wurden nach 10t durchgängen nicht ausgelöst scope 4 
+//Dritte Messung zwischen 1 und 2 150 und 50 gibt es schon eine abweichung von 0.2 us 
+
+
 
 // Pins to actuate in order
-static const uint8_t press_pins[] = {0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15};
+//static const uint8_t press_pins[] = {12,14,5,15,0,11,13,3,4,2,3,10};
+static const uint8_t press_pins[] = {0, 1, 2, 3, 4, 5,10,11,12,13,14,15 };
 #define NUM_PINS (sizeof(press_pins) / sizeof(press_pins[0]))
 
 // Ring buffer for timestamps + which pin fired
@@ -42,13 +49,13 @@ static inline bool queue_pop(event_t* out) {
 
 int main() {
     stdio_init_all();
-    sleep_ms(2000);  // allow USB host to connect
+    sleep_ms(5000);  // allow USB host to connect
 
     // Init all pins as outputs, idle high
     for (size_t i = 0; i < NUM_PINS; i++) {
         gpio_init(press_pins[i]);
         gpio_set_dir(press_pins[i], GPIO_OUT);
-        gpio_put(press_pins[i], 1);
+        gpio_put(press_pins[i], 0);
     }
 
     printf("Pico multi-GPIO actuator started. Interval=%d ms, duration=%d ms\n",
@@ -59,17 +66,20 @@ int main() {
 
     size_t pin_index = 0;
 
-    while (true) {
+    int ctr = 0;
+
+    while (ctr < 12) {
         // Handle periodic actuation
         if (absolute_time_diff_us(get_absolute_time(), next_press) <= 0) {
             uint8_t pin = press_pins[pin_index];
             uint64_t ts = time_us_64();
 
-            // active low pulse
-            gpio_put(pin, 0);
+            // active high pulse
+            gpio_put(pin, 1);
             queue_push(ts, pin);
             sleep_ms(PRESS_DURATION_MS);
-            gpio_put(pin, 1);
+            gpio_put(pin, 0);
+            ctr=ctr+1;
 
             // next pin (wrap)
             pin_index++;
