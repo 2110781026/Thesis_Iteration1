@@ -6,46 +6,61 @@
 #include <string>
 #include <vector>
 
-LARGE_INTEGER freq;
-static std::ofstream logFile;
+static LARGE_INTEGER freq;
 
-// Filter auto-repeat per key (scan code + E0/E1)
-static std::unordered_map<uint32_t, bool> pressed;
+// Two output streams
+static std::ofstream logFiltered;
+static std::ofstream logRaw;
 
-// ---- configure this ----
-static const char* TARGET_VIDPID = "VID_2E8A&PID_000A"; // <-- CHANGE if needed
+// Debounce window (ms): tune 2..10 depending on your hardware
+static const double DEBOUNCE_MS = 5.0;
 
+// Identify key by scan code + E0/E1 flags (more stable than VKey)
 static uint32_t MakeKeyId(const RAWKEYBOARD& rk) {
     uint32_t e0 = (rk.Flags & RI_KEY_E0) ? 1u : 0u;
     uint32_t e1 = (rk.Flags & RI_KEY_E1) ? 1u : 0u;
     return (uint32_t)rk.MakeCode | (e0 << 16) | (e1 << 17);
 }
 
-static std::string MakeTimestampedFilename() {
+static std::string MakeTimestampPrefix() {
     SYSTEMTIME st;
     GetLocalTime(&st);
     char buf[128];
-    sprintf_s(buf, "keyboard_%04u%02u%02u_%02u%02u%02u.csv",
+    sprintf_s(buf, "%04u%02u%02u_%02u%02u%02u",
               st.wYear, st.wMonth, st.wDay,
               st.wHour, st.wMinute, st.wSecond);
     return std::string(buf);
 }
 
-static std::string GetDeviceNameA(HANDLE hDevice) {
-    UINT size = 0;
-    GetRawInputDeviceInfoA(hDevice, RIDI_DEVICENAME, NULL, &size);
-    if (size == 0) return "";
-
-    std::vector<char> buf(size + 1, 0);
-    if (GetRawInputDeviceInfoA(hDevice, RIDI_DEVICENAME, buf.data(), &size) == (UINT)-1) return "";
-    return std::string(buf.data());
+static inline uint64_t QpcNow() {
+    LARGE_INTEGER c;
+    QueryPerformanceCounter(&c);
+    return (uint64_t)c.QuadPart;
 }
 
-static bool DeviceMatchesTarget(HANDLE hDevice) {
-    std::string name = GetDeviceNameA(hDevice);
-    if (name.empty()) return false;
-    // RawInput name often looks like: \\?\HID#VID_XXXX&PID_YYYY#...
-    return (name.find(TARGET_VIDPID) != std::string::npos);
+static inline uint64_t QpcToNs(uint64_t qpc) {
+    return (qpc * 1000000000ULL) / (uint64_t)freq.QuadPart;
+}
+
+static inline double QpcDeltaMs(uint64_t now, uint64_t then) {
+    if (then == 0) return 1e9;
+    uint64_t dq = now - then;
+    return (1000.0 * (double)dq) / (double)freq.QuadPart;
+}
+
+// ---- Debounce state (per device + key) ----
+struct KeyState {
+    bool down = false;
+    uint64_t last_accept_qpc = 0;
+};
+
+// Keyed by (device handle + keyId)
+static std::unordered_map<uint64_t, KeyState> state;
+
+// (device,key) -> 64-bit map key
+static inline uint64_t MakeStateKey(HANDLE hDevice, uint32_t keyId) {
+    uint64_t dev = (uint64_t)(uintptr_t)hDevice;
+    return (dev << 32) ^ (uint64_t)keyId;
 }
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
@@ -63,30 +78,63 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
         RAWINPUT* raw = (RAWINPUT*)lpb;
 
         if (raw->header.dwType == RIM_TYPEKEYBOARD) {
-            // Accept only events from the Pico HID device (by VID/PID), regardless of key pattern
-           
+            const RAWKEYBOARD& rk = raw->data.keyboard;
+            const bool isBreak = (rk.Flags & RI_KEY_BREAK) != 0;
 
-            RAWKEYBOARD& rk = raw->data.keyboard;
+            const uint32_t keyId = MakeKeyId(rk);
+            const int e0 = (rk.Flags & RI_KEY_E0) ? 1 : 0;
+            const int e1 = (rk.Flags & RI_KEY_E1) ? 1 : 0;
 
-            bool isBreak = (rk.Flags & RI_KEY_BREAK) != 0;
-            uint32_t keyId = MakeKeyId(rk);
+            const char* edge = isBreak ? "UP" : "DOWN";
 
-            if (isBreak) {
-                pressed[keyId] = false;
-            } else {
-                // Log only on UP->DOWN transition (filters OS auto-repeat)
-                if (!pressed[keyId]) {
-                    pressed[keyId] = true;
+            uint64_t nowQpc = QpcNow();
+            uint64_t t_ns = QpcToNs(nowQpc);
 
-                    LARGE_INTEGER c;
-                    QueryPerformanceCounter(&c);
-                    uint64_t t_ns = (c.QuadPart * 1000000000ULL) / freq.QuadPart;
+            // ---- RAW STREAM: log everything (including bounce/chatter) ----
+            // Device,VKey,ScanCode,E0,E1,Edge,HostTimestamp_ns
+            logRaw << (uintptr_t)raw->header.hDevice << ","
+                   << rk.VKey << ","
+                   << rk.MakeCode << ","
+                   << e0 << ","
+                   << e1 << ","
+                   << edge << ","
+                   << t_ns << "\n";
+            logRaw.flush();
 
-                    logFile << raw->header.hDevice << ","
-                            << rk.VKey << ","
-                            << rk.MakeCode << ","
-                            << t_ns << "\n";
-                    logFile.flush();
+            // ---- FILTERED STREAM: debounce + valid transitions only ----
+            const uint64_t mapKey = MakeStateKey(raw->header.hDevice, keyId);
+            KeyState& ks = state[mapKey];
+
+            // time-based debounce window
+            double sinceMs = QpcDeltaMs(nowQpc, ks.last_accept_qpc);
+            if (sinceMs >= DEBOUNCE_MS) {
+                bool accepted = false;
+
+                if (!isBreak) {
+                    // MAKE: accept only if we were UP
+                    if (!ks.down) {
+                        ks.down = true;
+                        accepted = true;
+                    }
+                } else {
+                    // BREAK: accept only if we were DOWN
+                    if (ks.down) {
+                        ks.down = false;
+                        accepted = true;
+                    }
+                }
+
+                if (accepted) {
+                    ks.last_accept_qpc = nowQpc;
+
+                    logFiltered << (uintptr_t)raw->header.hDevice << ","
+                                << rk.VKey << ","
+                                << rk.MakeCode << ","
+                                << e0 << ","
+                                << e1 << ","
+                                << edge << ","
+                                << t_ns << "\n";
+                    logFiltered.flush();
                 }
             }
         }
@@ -101,18 +149,30 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 int main() {
     QueryPerformanceFrequency(&freq);
 
-    std::string filename = MakeTimestampedFilename();
-    logFile.open(filename, std::ios::out | std::ios::trunc);
-    if (!logFile.is_open()) {
-        printf("Failed to open log file: %s\n", filename.c_str());
+    std::string prefix = MakeTimestampPrefix();
+    std::string filteredName = "keyboard_" + prefix + "_filtered.csv";
+    std::string rawName      = "keyboard_" + prefix + "_raw.csv";
+
+    logFiltered.open(filteredName, std::ios::out | std::ios::trunc);
+    if (!logFiltered.is_open()) {
+        printf("Failed to open filtered log file: %s\n", filteredName.c_str());
         return 1;
     }
 
-    printf("Listening... writing %s\n", filename.c_str());
-    printf("Filtering to device containing: %s\n", TARGET_VIDPID);
+    logRaw.open(rawName, std::ios::out | std::ios::trunc);
+    if (!logRaw.is_open()) {
+        printf("Failed to open raw log file: %s\n", rawName.c_str());
+        return 1;
+    }
 
-    logFile << "Device,VKey,ScanCode,HostTimestamp_ns\n";
-    logFile.flush();
+    printf("Listening...\n");
+    printf("Filtered log: %s (debounce %.2f ms)\n", filteredName.c_str(), DEBOUNCE_MS);
+    printf("Raw log:      %s (all events)\n", rawName.c_str());
+
+    logFiltered << "Device,VKey,ScanCode,E0,E1,Edge,HostTimestamp_ns\n";
+    logRaw      << "Device,VKey,ScanCode,E0,E1,Edge,HostTimestamp_ns\n";
+    logFiltered.flush();
+    logRaw.flush();
 
     RAWINPUTDEVICE rid;
     rid.usUsagePage = 0x01;
@@ -138,6 +198,7 @@ int main() {
         DispatchMessage(&msg);
     }
 
-    logFile.close();
+    logFiltered.close();
+    logRaw.close();
     return 0;
 }
