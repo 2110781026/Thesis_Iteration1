@@ -4,8 +4,8 @@
 #include "pico/time.h"
 
 #define EVENT_QUEUE_SIZE 128  // must be a power of two (128, 256, 512...)
-#define PRESS_INTERVAL_MS 150  // interval between actuations
-#define PRESS_DURATION_MS 500   // how long the pin stays "active"
+#define PRESS_INTERVAL_MS 35  // interval between actuations
+#define PRESS_DURATION_MS 5   // how long the pin stays "active"
 
 //Erste Messung mit Bildern von Osci war im bereich 15 und 5 us bilder: 0-3
 //Zweite Messung mit bidern 1500 und 500 us bild 4 => ein Pulsweiter trigger außerhalb der erlaubten Periodendauer wurde gesetzt. Dieser wurden nach 10t durchgängen nicht ausgelöst scope 4 
@@ -15,7 +15,7 @@
 
 // Pins to actuate in order
 //static const uint8_t press_pins[] = {12,14,5,15,0,11,13,3,4,2,3,10};
-static const uint8_t press_pins[] = {0, 1, 2, 3, 4, 5,10,11,12,13,14,15 };
+static const uint8_t press_pins[] = {0, 1, 2, 3, 4, 5,10,11,12,13,14,15,16 };
 #define NUM_PINS (sizeof(press_pins) / sizeof(press_pins[0]))
 
 // Ring buffer for timestamps + which pin fired
@@ -49,7 +49,7 @@ static inline bool queue_pop(event_t* out) {
 
 int main() {
     stdio_init_all();
-    sleep_ms(5000);  // allow USB host to connect
+    sleep_ms(10000);  // allow USB host to connect
 
     // Init all pins as outputs, idle high
     for (size_t i = 0; i < NUM_PINS; i++) {
@@ -66,9 +66,9 @@ int main() {
 
     size_t pin_index = 0;
 
-    int ctr = 0;
+    //int ctr = 0;
 
-    while (ctr < 12) {
+    while (true) {
         // Handle periodic actuation
         if (absolute_time_diff_us(get_absolute_time(), next_press) <= 0) {
             uint8_t pin = press_pins[pin_index];
@@ -79,7 +79,7 @@ int main() {
             queue_push(ts, pin);
             sleep_ms(PRESS_DURATION_MS);
             gpio_put(pin, 0);
-            ctr=ctr+1;
+            //ctr=ctr+1;
 
             // next pin (wrap)
             pin_index++;
