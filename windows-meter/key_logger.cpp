@@ -13,8 +13,12 @@ static LARGE_INTEGER freq;
 static std::ofstream logFiltered;
 static std::ofstream logRaw;
 
-// Debounce window (ms): tune 2..10 depending on your hardware
+// Raw stream debounce window (ms): (kept, but not used for filtered anymore)
 static const double DEBOUNCE_MS = 5.0;
+
+// ---- Option A: filtered stream cooldown (ms) ----
+// Tune this to be smaller than the shortest intentional repeat of the SAME key.
+static const double COOLDOWN_MS = 24.0;
 
 // Identify key by scan code + E0/E1 flags (more stable than VKey)
 static uint32_t MakeKeyId(const RAWKEYBOARD& rk) {
@@ -49,34 +53,26 @@ static inline double QpcDeltaMs(uint64_t now, uint64_t then) {
     return (1000.0 * (double)dq) / (double)freq.QuadPart;
 }
 
-// ---- NEW: turn RAWKEYBOARD into a human-readable key name ----
+// ---- turn RAWKEYBOARD into a human-readable key name ----
 // Uses scan code + E0 flag -> GetKeyNameText (localized to current keyboard layout).
 static std::string HumanKeyNameFromRaw(const RAWKEYBOARD& rk) {
-    // lParam bits for GetKeyNameText:
-    // bits 16..23: scan code
-    // bit 24: extended key (E0)
-    // bit 25: "do not care" (some examples set this, not required)
     LONG lparam = ((LONG)rk.MakeCode) << 16;
-
     if (rk.Flags & RI_KEY_E0) {
         lparam |= (1L << 24);
     }
-    // Note: RI_KEY_E1 is rare (Pause/Break, etc). GetKeyNameText handles most cases.
 
     char name[128] = {0};
     int n = GetKeyNameTextA(lparam, name, (int)sizeof(name));
     if (n > 0) return std::string(name);
 
-    // Fallback: if GetKeyNameText fails, give something usable
     char fallback[64];
     sprintf_s(fallback, "VK_%u_SC_%u", (unsigned)rk.VKey, (unsigned)rk.MakeCode);
     return std::string(fallback);
 }
 
-// ---- Debounce state (per device + key) ----
+// ---- Filter state (Option A): NO UP tracking, only last accepted DOWN time ----
 struct KeyState {
-    bool down = false;
-    uint64_t last_accept_qpc = 0;
+    uint64_t last_down_accept_qpc = 0;
 };
 
 // Keyed by (device handle + keyId)
@@ -115,11 +111,10 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
             uint64_t nowQpc = QpcNow();
             uint64_t t_ns = QpcToNs(nowQpc);
 
-            // ---- NEW: compute key name once per event ----
+            // compute key name once per event
             std::string keyName = HumanKeyNameFromRaw(rk);
 
             // ---- RAW STREAM: log everything (including bounce/chatter) ----
-            // Device,VKey,ScanCode,E0,E1,Edge,HostTimestamp_ns,KeyName
             logRaw << (uintptr_t)raw->header.hDevice << ","
                    << rk.VKey << ","
                    << rk.MakeCode << ","
@@ -131,38 +126,26 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
                    << "\n";
             logRaw.flush();
 
-            // ---- FILTERED STREAM: only first DOWN, no UP ----
-            const uint64_t mapKey = MakeStateKey(raw->header.hDevice, keyId);
-            KeyState& ks = state[mapKey];
-
-            double sinceMs = QpcDeltaMs(nowQpc, ks.last_accept_qpc);
-
-            bool accepted = false;
-
+            // ---- FILTERED STREAM (Option A): accept DOWN only, per-key cooldown; ignore UP completely ----
             if (!isBreak) { // DOWN only
-                if (!ks.down && sinceMs >= DEBOUNCE_MS) {
-                    ks.down = true;
-                    ks.last_accept_qpc = nowQpc;
-                    accepted = true;
+                const uint64_t mapKey = MakeStateKey(raw->header.hDevice, keyId);
+                KeyState& ks = state[mapKey];
+
+                double sinceMs = QpcDeltaMs(nowQpc, ks.last_down_accept_qpc);
+                if (sinceMs >= COOLDOWN_MS) {
+                    ks.last_down_accept_qpc = nowQpc;
+
+                    logFiltered << (uintptr_t)raw->header.hDevice << ","
+                                << rk.VKey << ","
+                                << rk.MakeCode << ","
+                                << e0 << ","
+                                << e1 << ","
+                                << t_ns << ","
+                                << "\"" << keyName << "\""
+                                << "\n";
+                    logFiltered.flush();
                 }
-            } else {
-                // UP: update state but never log
-                ks.down = false;
             }
-
-            if (accepted) {
-                logFiltered << (uintptr_t)raw->header.hDevice << ","
-                            << rk.VKey << ","
-                            << rk.MakeCode << ","
-                            << e0 << ","
-                            << e1 << ","
-                            << "DOWN" << ","
-                            << t_ns << ","
-                            << "\"" << keyName << "\""
-                            << "\n";
-                logFiltered.flush();
-            }
-
         }
 
         delete[] lpb;
@@ -192,10 +175,11 @@ int main() {
     }
 
     printf("Listening...\n");
-    printf("Filtered log: %s (debounce %.2f ms)\n", filteredName.c_str(), DEBOUNCE_MS);
+    printf("Filtered log: %s (cooldown %.2f ms, DOWN-only, ignores UP)\n", filteredName.c_str(), COOLDOWN_MS);
     printf("Raw log:      %s (all events)\n", rawName.c_str());
 
-    logFiltered << "Device,VKey,ScanCode,E0,E1,Edge,HostTimestamp_ns,KeyName\n";
+    // Filtered: no Edge column (it's always DOWN)
+    logFiltered << "Device,VKey,ScanCode,E0,E1,HostTimestamp_ns,KeyName\n";
     logRaw      << "Device,VKey,ScanCode,E0,E1,Edge,HostTimestamp_ns,KeyName\n";
     logFiltered.flush();
     logRaw.flush();

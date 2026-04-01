@@ -4,18 +4,21 @@
 #include "pico/time.h"
 
 #define EVENT_QUEUE_SIZE 128  // must be a power of two (128, 256, 512...)
-#define PRESS_INTERVAL_MS 35  // interval between actuations
-#define PRESS_DURATION_MS 5   // how long the pin stays "active"
+#define PRESS_INTERVAL_MS 80  // interval between actuations
+#define PRESS_DURATION_MS 40   // how long the pin stays "active"
 
 //Erste Messung mit Bildern von Osci war im bereich 15 und 5 us bilder: 0-3
 //Zweite Messung mit bidern 1500 und 500 us bild 4 => ein Pulsweiter trigger außerhalb der erlaubten Periodendauer wurde gesetzt. Dieser wurden nach 10t durchgängen nicht ausgelöst scope 4 
 //Dritte Messung zwischen 1 und 2 150 und 50 gibt es schon eine abweichung von 0.2 us 
 
-
+//13 = H    1 =  N      4 =  B  11 = F
+//14 = R    2 =  L      5 =  D  12 = E
+//15 = U    3 = Rechts  10 = G  0  = A
 
 // Pins to actuate in order
-//static const uint8_t press_pins[] = {12,14,5,15,0,11,13,3,4,2,3,10};
-static const uint8_t press_pins[] = {0, 1, 2, 3, 4, 5,10,11,12,13,14,15,16 };
+static const uint8_t press_pins[] = {11,13,4,15,14,10,12,1,2,0,1,5};
+//static const uint8_t press_pins[] = {3,13,12,4,15,14,10,11,1,2,0,1,5};
+//static const uint8_t press_pins[] = {0, 1, 2, 3, 4, 5,10,11,12,13,14,15 };
 #define NUM_PINS (sizeof(press_pins) / sizeof(press_pins[0]))
 
 // Ring buffer for timestamps + which pin fired
