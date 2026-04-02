@@ -1,1 +1,0 @@
-call "%ProgramFiles%\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat" && cl /std:c++17 /W4 /O2 /EHsc serial_logger_iteration3.cpp

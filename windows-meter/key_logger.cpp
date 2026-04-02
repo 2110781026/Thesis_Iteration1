@@ -17,7 +17,7 @@
 // COOLDOWN_MS < PRESS_INTERVAL_MS (30ms) to never miss a valid press.
 // COOLDOWN_MS > PRESS_DURATION_MS (5ms)  to suppress bounce within a press.
 // ---------------------------------------------------------------------------
-static const double COOLDOWN_MS = 6.0;
+static const double COOLDOWN_MS = 28.0;
 
 // ---------------------------------------------------------------------------
 // Globals

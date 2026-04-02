@@ -1,0 +1,1 @@
+call "C:\Program Files\Microsoft Visual Studio\18\Community\VC\Auxiliary\Build\vcvars64.bat" && cl /std:c++17 /W4 /O2 /EHsc key_logger.cpp user32.lib
