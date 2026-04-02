@@ -439,8 +439,6 @@ Discarded input sections
                 0x00000000       0xcc CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
  .rodata.at_the_end_of_time
                 0x00000000        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
- .rodata.nil_time
-                0x00000000        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
  .text          0x00000000        0x0 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/timeout_helper.c.obj
  .data          0x00000000        0x0 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/timeout_helper.c.obj
  .bss           0x00000000        0x0 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/timeout_helper.c.obj
@@ -2657,7 +2655,7 @@ LOAD C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
                 0x10000100                        __boot2_end__ = .
                 0x00000001                        ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x10000100     0x6c3c
+.text           0x10000100     0x6d1c
                 0x10000100                        __logical_binary_start = .
  *(.vectors)
  .vectors       0x10000100       0xd4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
@@ -2724,635 +2722,635 @@ LOAD C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
  .text.frame_dummy
                 0x100002b0       0x24 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  .text.startup.main
-                0x100002d4      0x1e8 CMakeFiles/key_latency.dir/main.c.obj
+                0x100002d4      0x2c8 CMakeFiles/key_latency.dir/main.c.obj
                 0x100002d4                main
  .text.gpio_init
-                0x100004bc       0x40 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x100004bc                gpio_init
+                0x1000059c       0x40 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x1000059c                gpio_init
  .text.rp2040_chip_version
-                0x100004fc        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
-                0x100004fc                rp2040_chip_version
- .text.panic    0x10000508       0x30 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
-                0x10000508                panic
+                0x100005dc        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
+                0x100005dc                rp2040_chip_version
+ .text.panic    0x100005e8       0x30 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
+                0x100005e8                panic
  .text.hw_claim_or_assert
-                0x10000538       0x44 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
-                0x10000538                hw_claim_or_assert
+                0x10000618       0x44 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
+                0x10000618                hw_claim_or_assert
  .text.hw_claim_unused_from_range
-                0x1000057c       0x88 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
-                0x1000057c                hw_claim_unused_from_range
+                0x1000065c       0x88 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
+                0x1000065c                hw_claim_unused_from_range
  .text.next_striped_spin_lock_num
-                0x10000604       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x10000604                next_striped_spin_lock_num
+                0x100006e4       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x100006e4                next_striped_spin_lock_num
  .text.spin_lock_claim_unused
-                0x1000061c       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x1000061c                spin_lock_claim_unused
+                0x100006fc       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x100006fc                spin_lock_claim_unused
  .text.spin_locks_reset
-                0x10000640       0x1c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
-                0x10000640                spin_locks_reset
+                0x10000720       0x1c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+                0x10000720                spin_locks_reset
  .text.runtime_init_per_core_irq_priorities
-                0x1000065c       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x1000065c                runtime_init_per_core_irq_priorities
+                0x1000073c       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x1000073c                runtime_init_per_core_irq_priorities
  .text.irq_set_enabled
-                0x10000680       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000680                irq_set_enabled
+                0x10000760       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000760                irq_set_enabled
  .text.irq_is_enabled
-                0x100006a4       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100006a4                irq_is_enabled
+                0x10000784       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000784                irq_is_enabled
  .text.irq_set_pending
-                0x100006bc       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100006bc                irq_set_pending
+                0x1000079c       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x1000079c                irq_set_pending
  .text.irq_has_shared_handler
-                0x100006cc       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100006cc                irq_has_shared_handler
+                0x100007ac       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x100007ac                irq_has_shared_handler
  .text.irq_set_exclusive_handler
-                0x100006f0       0x54 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100006f0                irq_set_exclusive_handler
+                0x100007d0       0x54 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x100007d0                irq_set_exclusive_handler
  .text.irq_add_shared_handler
-                0x10000744      0x1f4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000744                irq_add_shared_handler
+                0x10000824      0x1f4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000824                irq_add_shared_handler
  .text.irq_add_tail_to_free_list
-                0x10000938       0xb4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10000938                irq_add_tail_to_free_list
+                0x10000a18       0xb4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000a18                irq_add_tail_to_free_list
  .text.user_irq_claim_unused
-                0x100009ec       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x100009ec                user_irq_claim_unused
+                0x10000acc       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10000acc                user_irq_claim_unused
  .text.lock_init
-                0x10000a18       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
-                0x10000a18                lock_init
+                0x10000af8       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x10000af8                lock_init
  .text.runtime_init_mutex
-                0x10000a28       0x50 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x10000a28                runtime_init_mutex
+                0x10000b08       0x50 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10000b08                runtime_init_mutex
  .text.mutex_init
-                0x10000a78       0x1c CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x10000a78                mutex_init
+                0x10000b58       0x1c CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10000b58                mutex_init
  .text.critical_section_init
-                0x10000a94       0x1c CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
-                0x10000a94                critical_section_init
+                0x10000b74       0x1c CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
+                0x10000b74                critical_section_init
  .text.critical_section_init_with_lock_num
-                0x10000ab0       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
-                0x10000ab0                critical_section_init_with_lock_num
+                0x10000b90       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
+                0x10000b90                critical_section_init_with_lock_num
  .text.sleep_until_callback
-                0x10000ac4       0x30 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10000ba4       0x30 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_irq_handler
-                0x10000af4      0x300 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10000bd4      0x300 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
  .text.runtime_init_default_alarm_pool
-                0x10000df4       0xdc CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x10000df4                runtime_init_default_alarm_pool
+                0x10000ed4       0xdc CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10000ed4                runtime_init_default_alarm_pool
  .text.alarm_pool_get_default
-                0x10000ed0        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x10000ed0                alarm_pool_get_default
+                0x10000fb0        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10000fb0                alarm_pool_get_default
  .text.alarm_pool_add_alarm_at
-                0x10000ed8       0xd0 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x10000ed8                alarm_pool_add_alarm_at
+                0x10000fb8       0xd0 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10000fb8                alarm_pool_add_alarm_at
  .text.alarm_pool_add_alarm_at_force_in_context
-                0x10000fa8       0xb0 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x10000fa8                alarm_pool_add_alarm_at_force_in_context
+                0x10001088       0xb0 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10001088                alarm_pool_add_alarm_at_force_in_context
  .text.alarm_pool_cancel_alarm
-                0x10001058       0x74 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x10001058                alarm_pool_cancel_alarm
+                0x10001138       0x74 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10001138                alarm_pool_cancel_alarm
  .text.alarm_pool_core_num
-                0x100010cc        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x100010cc                alarm_pool_core_num
+                0x100011ac        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x100011ac                alarm_pool_core_num
  .text.sleep_ms
-                0x100010d0       0xfc CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x100010d0                sleep_ms
+                0x100011b0       0xfc CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x100011b0                sleep_ms
  .text.best_effort_wfe_or_timeout
-                0x100011cc      0x10c CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x100011cc                best_effort_wfe_or_timeout
+                0x100012ac      0x10c CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x100012ac                best_effort_wfe_or_timeout
  .text.timer_hardware_alarm_claim
-                0x100012d8       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100012d8                timer_hardware_alarm_claim
+                0x100013b8       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100013b8                timer_hardware_alarm_claim
  .text.timer_time_us_64
-                0x100012ec       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100012ec                timer_time_us_64
+                0x100013cc       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100013cc                timer_time_us_64
  .text.time_us_64
-                0x100012fc       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x100012fc                time_us_64
+                0x100013dc       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100013dc                time_us_64
  .text.busy_wait_until
-                0x10001310       0x20 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x10001310                busy_wait_until
+                0x100013f0       0x20 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x100013f0                busy_wait_until
  .text.clock_configure_int_divider
-                0x10001330       0xf4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x10001330                clock_configure_int_divider
+                0x10001410       0xf4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x10001410                clock_configure_int_divider
  .text.clock_configure_undivided
-                0x10001424       0xe8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x10001424                clock_configure_undivided
+                0x10001504       0xe8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x10001504                clock_configure_undivided
  .text.clock_get_hz
-                0x1000150c        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x1000150c                clock_get_hz
+                0x100015ec        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x100015ec                clock_get_hz
  .text.pll_init
-                0x10001518       0xa4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
-                0x10001518                pll_init
+                0x100015f8       0xa4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x100015f8                pll_init
  .text.watchdog_reboot
-                0x100015bc       0x9c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x100015bc                watchdog_reboot
+                0x1000169c       0x9c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x1000169c                watchdog_reboot
  .text.tick_start
-                0x10001658       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
-                0x10001658                tick_start
+                0x10001738       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
+                0x10001738                tick_start
  .text.rom_func_lookup
-                0x10001668       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10001668                rom_func_lookup
+                0x10001748       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x10001748                rom_func_lookup
  .text.rom_data_lookup
-                0x10001678       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10001678                rom_data_lookup
+                0x10001758       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x10001758                rom_data_lookup
  .text.rom_funcs_lookup
-                0x10001688       0x44 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x10001688                rom_funcs_lookup
+                0x10001768       0x44 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x10001768                rom_funcs_lookup
  .text.rom_reset_usb_boot_extra
-                0x100016cc       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x100016cc                rom_reset_usb_boot_extra
+                0x100017ac       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x100017ac                rom_reset_usb_boot_extra
  .text.xosc_init
-                0x100016f0       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
-                0x100016f0                xosc_init
+                0x100017d0       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x100017d0                xosc_init
  .text.first_per_core_initializer
-                0x10001718        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x100017f8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .text.hard_assertion_failure
-                0x1000171c        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x1000171c                hard_assertion_failure
+                0x100017fc        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x100017fc                hard_assertion_failure
  .text.runtime_run_initializers
-                0x10001728       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10001728                runtime_run_initializers
+                0x10001808       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10001808                runtime_run_initializers
  .text.runtime_init_early_resets
-                0x10001750       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10001750                runtime_init_early_resets
+                0x10001830       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10001830                runtime_init_early_resets
  .text.runtime_init_usb_power_down
-                0x1000177c       0x1c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x1000177c                runtime_init_usb_power_down
+                0x1000185c       0x1c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x1000185c                runtime_init_usb_power_down
  .text.runtime_init_post_clock_resets
-                0x10001798       0x20 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10001798                runtime_init_post_clock_resets
+                0x10001878       0x20 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10001878                runtime_init_post_clock_resets
  .text.runtime_init_rp2040_gpio_ie_disable
-                0x100017b8       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x100017b8                runtime_init_rp2040_gpio_ie_disable
+                0x10001898       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10001898                runtime_init_rp2040_gpio_ie_disable
  .text.runtime_init_spin_locks_reset
-                0x100017cc        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x100017cc                runtime_init_spin_locks_reset
+                0x100018ac        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x100018ac                runtime_init_spin_locks_reset
  .text.runtime_init_install_ram_vector_table
-                0x100017d4       0xb4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x100017d4                runtime_init_install_ram_vector_table
+                0x100018b4       0xb4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x100018b4                runtime_init_install_ram_vector_table
  .text.runtime_init_clocks
-                0x10001888       0xd8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
-                0x10001888                runtime_init_clocks
- .text          0x10001960       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x10001968       0xd8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+                0x10001968                runtime_init_clocks
+ .text          0x10001a40       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .text.__wrap___aeabi_idiv
-                0x10001970       0x50 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
-                0x10001970                __wrap___aeabi_idivmod
-                0x10001970                divmod_s32s32
-                0x10001970                div_s32s32
-                0x10001970                __wrap___aeabi_idiv
-                0x10001978                divmod_s32s32_unsafe
-                0x100019a4                divmod_s32s32_savestate
+                0x10001a50       0x50 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
+                0x10001a50                __wrap___aeabi_idivmod
+                0x10001a50                divmod_s32s32
+                0x10001a50                div_s32s32
+                0x10001a50                __wrap___aeabi_idiv
+                0x10001a58                divmod_s32s32_unsafe
+                0x10001a84                divmod_s32s32_savestate
  .text.__wrap___aeabi_uidiv
-                0x100019c0       0x4c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
-                0x100019c0                __wrap___aeabi_uidiv
-                0x100019c0                __wrap___aeabi_uidivmod
-                0x100019c0                div_u32u32
-                0x100019c0                divmod_u32u32
-                0x100019c8                divmod_u32u32_unsafe
-                0x100019f0                divmod_u32u32_savestate
+                0x10001aa0       0x4c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
+                0x10001aa0                __wrap___aeabi_uidiv
+                0x10001aa0                __wrap___aeabi_uidivmod
+                0x10001aa0                div_u32u32
+                0x10001aa0                divmod_u32u32
+                0x10001aa8                divmod_u32u32_unsafe
+                0x10001ad0                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x10001a0c      0x424 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
-                0x10001a0c                div_s64s64
-                0x10001a0c                divmod_s64s64
-                0x10001a0c                __wrap___aeabi_ldivmod
-                0x10001a3c                divmod_u64u64
-                0x10001a3c                div_u64u64
-                0x10001a3c                __wrap___aeabi_uldivmod
-                0x10001a4c                divmod_u64u64_savestate
-                0x10001a6c                divmod_s64s64_unsafe
-                0x10001af4                divmod_u64u64_unsafe
+                0x10001aec      0x424 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
+                0x10001aec                div_s64s64
+                0x10001aec                divmod_s64s64
+                0x10001aec                __wrap___aeabi_ldivmod
+                0x10001b1c                divmod_u64u64
+                0x10001b1c                div_u64u64
+                0x10001b1c                __wrap___aeabi_uldivmod
+                0x10001b2c                divmod_u64u64_savestate
+                0x10001b4c                divmod_s64s64_unsafe
+                0x10001bd4                divmod_u64u64_unsafe
  .text.__wrap___aeabi_darithmetic
-                0x10001e30       0x80 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001e30                __wrap___aeabi_drsub
-                0x10001e36                __wrap___aeabi_dsub
-                0x10001e48                __wrap___aeabi_dadd
-                0x10001e5a                __wrap___aeabi_ddiv
-                0x10001e96                __wrap___aeabi_dmul
+                0x10001f10       0x80 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10001f10                __wrap___aeabi_drsub
+                0x10001f16                __wrap___aeabi_dsub
+                0x10001f28                __wrap___aeabi_dadd
+                0x10001f3a                __wrap___aeabi_ddiv
+                0x10001f76                __wrap___aeabi_dmul
  .text.__wrap___aeabi_cdcmple
-                0x10001eb0       0x6c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001eb0                __wrap___aeabi_cdrcmple
-                0x10001ec0                __wrap___aeabi_cdcmpeq
-                0x10001ec0                __wrap___aeabi_cdcmple
+                0x10001f90       0x6c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10001f90                __wrap___aeabi_cdrcmple
+                0x10001fa0                __wrap___aeabi_cdcmpeq
+                0x10001fa0                __wrap___aeabi_cdcmple
  .text.__wrap___aeabi_dcmplt
-                0x10001f1c        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001f1c                __wrap___aeabi_dcmplt
+                0x10001ffc        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10001ffc                __wrap___aeabi_dcmplt
  .text.__wrap___aeabi_dcmple
-                0x10001f28       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001f28                __wrap___aeabi_dcmple
+                0x10002008       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10002008                __wrap___aeabi_dcmple
  .text.__wrap___aeabi_dcmpge
-                0x10001f38       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001f38                __wrap___aeabi_dcmpge
+                0x10002018       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10002018                __wrap___aeabi_dcmpge
  .text.__wrap___aeabi_dcmpgt
-                0x10001f48        0xa CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001f48                __wrap___aeabi_dcmpgt
+                0x10002028        0xa CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10002028                __wrap___aeabi_dcmpgt
  .text.__wrap___aeabi_dcmpun
-                0x10001f52       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001f52                __wrap___aeabi_dcmpun
- *fill*         0x10001f6a        0x2 
+                0x10002032       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10002032                __wrap___aeabi_dcmpun
+ *fill*         0x1000204a        0x2 
  .text.__wrap___aeabi_i2d
-                0x10001f6c       0x38 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001f6c                uint2double
-                0x10001f6c                __wrap___aeabi_ui2d
-                0x10001f74                int2double
-                0x10001f74                __wrap___aeabi_i2d
+                0x1000204c       0x38 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x1000204c                uint2double
+                0x1000204c                __wrap___aeabi_ui2d
+                0x10002054                int2double
+                0x10002054                __wrap___aeabi_i2d
  .text.__wrap___aeabi_d2iz
-                0x10001fa4       0x48 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001fa4                double2int_z
-                0x10001fa4                __wrap___aeabi_d2iz
+                0x10002084       0x48 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10002084                double2int_z
+                0x10002084                __wrap___aeabi_d2iz
  .text.__wrap___aeabi_d2uiz
-                0x10001fec       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x10001fec                double2uint
-                0x10001fec                __wrap___aeabi_d2uiz
-                0x10001fec                double2uint_z
+                0x100020cc       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x100020cc                double2uint
+                0x100020cc                __wrap___aeabi_d2uiz
+                0x100020cc                double2uint_z
  .text.__aeabi_double_init
-                0x10002004       0xa4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
-                0x10002004                __aeabi_double_init
+                0x100020e4       0xa4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x100020e4                __aeabi_double_init
  .text.double_table_shim_on_use_helper
-                0x100020a8       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x100020a8                double_table_shim_on_use_helper
+                0x10002188       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x10002188                double_table_shim_on_use_helper
  .text.__wrap___aeabi_dsub
-                0x100020d4       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x100020d4                drsub_shim
-                0x100020da                dsub_shim
+                0x100021b4       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x100021b4                drsub_shim
+                0x100021ba                dsub_shim
  .text.dadd_shim
-                0x100020e4      0x15c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x100020e4                dadd_shim
+                0x100021c4      0x15c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x100021c4                dadd_shim
  .text.dmul_shim
-                0x10002240      0x15c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x10002240                dmul_shim
+                0x10002320      0x15c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x10002320                dmul_shim
  .text.ddiv_shim
-                0x1000239c      0x1b0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x1000239c                ddiv_shim
+                0x1000247c      0x1b0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x1000247c                ddiv_shim
  .text.double2uint_shim
-                0x1000254c        0xe CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x1000254c                double2uint_shim
-                0x1000254e                double2ufix_shim
- *fill*         0x1000255a        0x2 
- .text.double2uint64_shim
-                0x1000255c       0x70 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x1000255c                double2uint64_shim
-                0x1000255e                double2ufix64_shim
-                0x1000257e                d2fix_a
- .text.dunpacks
-                0x100025cc       0x3c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x100025cc                dunpacks
- .text.__aeabi_lmul
-                0x10002608       0x32 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
-                0x10002608                __wrap___aeabi_lmul
+                0x1000262c        0xe CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x1000262c                double2uint_shim
+                0x1000262e                double2ufix_shim
  *fill*         0x1000263a        0x2 
+ .text.double2uint64_shim
+                0x1000263c       0x70 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x1000263c                double2uint64_shim
+                0x1000263e                double2ufix64_shim
+                0x1000265e                d2fix_a
+ .text.dunpacks
+                0x100026ac       0x3c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x100026ac                dunpacks
+ .text.__aeabi_lmul
+                0x100026e8       0x32 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x100026e8                __wrap___aeabi_lmul
+ *fill*         0x1000271a        0x2 
  .text.__aeabi_float_init
-                0x1000263c       0x64 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
-                0x1000263c                __aeabi_float_init
+                0x1000271c       0x64 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x1000271c                __aeabi_float_init
  .text.float_table_shim_on_use_helper
-                0x100026a0       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
-                0x100026a0                float_table_shim_on_use_helper
- .text          0x100026cc       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100026cc                __aeabi_mem_init
- .text.memset   0x100026dc        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100026dc                __wrap_memset
- .text.memcpy   0x100026e8        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x100026e8                __wrap_memcpy
-                0x100026e8                __wrap___aeabi_memcpy
+                0x10002780       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+                0x10002780                float_table_shim_on_use_helper
+ .text          0x100027ac       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x100027ac                __aeabi_mem_init
+ .text.memset   0x100027bc        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x100027bc                __wrap_memset
+ .text.memcpy   0x100027c8        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x100027c8                __wrap_memcpy
+                0x100027c8                __wrap___aeabi_memcpy
  .text._out_null
-                0x100026f4        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100027d4        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_rev
-                0x100026f8       0xac CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100027d8       0xac CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._ntoa_format
-                0x100027a4      0x1cc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10002884      0x1cc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_char
-                0x10002970       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10002a50       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_fct
-                0x10002980       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._ftoa    0x10002990      0x4a8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._etoa    0x10002e38      0x57c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10002a60       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._ftoa    0x10002a70      0x4a8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._etoa    0x10002f18      0x57c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._vsnprintf
-                0x100033b4      0xbe0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10003494      0xbe0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text.vfctprintf
-                0x10003f94       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x10003f94                vfctprintf
+                0x10004074       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10004074                vfctprintf
  .text.weak_raw_vprintf
-                0x10003fb8       0x30 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x10003fb8                weak_raw_vprintf
- .text._exit    0x10003fe8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
-                0x10003fe8                _exit
- .text.exit     0x10003fec        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
-                0x10003fec                exit
+                0x10004098       0x30 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10004098                weak_raw_vprintf
+ .text._exit    0x100040c8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x100040c8                _exit
+ .text.exit     0x100040cc        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x100040cc                exit
  .text.runtime_init
-                0x10003ff4       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
-                0x10003ff4                runtime_init
+                0x100040d4       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x100040d4                runtime_init
  .text.stdio_out_chars_no_crlf
-                0x10004020       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004100       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_out_chars_crlf
-                0x10004030       0xb0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004110       0xb0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_buffered_printer
-                0x100040e0       0x64 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x100041c0       0x64 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_put_string
-                0x10004144       0xfc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004144                stdio_put_string
+                0x10004224       0xfc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004224                stdio_put_string
  .text.stdio_set_driver_enabled
-                0x10004240       0x30 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004240                stdio_set_driver_enabled
+                0x10004320       0x30 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004320                stdio_set_driver_enabled
  .text.stdio_init_all
-                0x10004270        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004270                stdio_init_all
+                0x10004350        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004350                stdio_init_all
  .text.__wrap_putchar
-                0x10004278       0x94 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004278                __wrap_putchar
-                0x10004278                stdio_putchar
+                0x10004358       0x94 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004358                __wrap_putchar
+                0x10004358                stdio_putchar
  .text.__wrap_puts
-                0x1000430c       0x3c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x1000430c                stdio_puts
-                0x1000430c                __wrap_puts
+                0x100043ec       0x3c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x100043ec                stdio_puts
+                0x100043ec                __wrap_puts
  .text.__wrap_vprintf
-                0x10004348       0xcc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004348                stdio_vprintf
-                0x10004348                __wrap_vprintf
+                0x10004428       0xcc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x10004428                stdio_vprintf
+                0x10004428                __wrap_vprintf
  .text.__wrap_printf
-                0x10004414       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x10004414                __wrap_printf
-                0x10004414                stdio_printf
+                0x100044f4       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x100044f4                __wrap_printf
+                0x100044f4                stdio_printf
  .text.resetd_init
-                0x1000442c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x1000450c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_reset
-                0x10004430        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004510        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_open
-                0x1000443c       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x1000451c       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_xfer_cb
-                0x10004464        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004544        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_control_xfer_cb
-                0x10004468       0x54 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10004548       0x54 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.tud_descriptor_bos_cb
-                0x100044bc        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x100044bc                tud_descriptor_bos_cb
+                0x1000459c        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x1000459c                tud_descriptor_bos_cb
  .text.tud_vendor_control_xfer_cb
-                0x100044c4       0x34 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x100044c4                tud_vendor_control_xfer_cb
+                0x100045a4       0x34 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x100045a4                tud_vendor_control_xfer_cb
  .text.usbd_app_driver_get_cb
-                0x100044f8        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x100044f8                usbd_app_driver_get_cb
+                0x100045d8        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x100045d8                usbd_app_driver_get_cb
  .text.tud_cdc_line_coding_cb
-                0x10004504       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x10004504                tud_cdc_line_coding_cb
+                0x100045e4       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x100045e4                tud_cdc_line_coding_cb
  .text.stdio_usb_set_chars_available_callback
-                0x10004530       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x10004530                stdio_usb_set_chars_available_callback
- .text.usb_irq  0x10004544       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004610       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004610                stdio_usb_set_chars_available_callback
+ .text.usb_irq  0x10004624       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.timer_task
-                0x10004554       0x64 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004634       0x64 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.stdio_usb_in_chars
-                0x100045b8       0x8c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x100045b8                stdio_usb_in_chars
+                0x10004698       0x8c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004698                stdio_usb_in_chars
  .text.stdio_usb_out_flush
-                0x10004644       0x4c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004724       0x4c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.stdio_usb_out_chars
-                0x10004690      0x100 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004770      0x100 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.low_priority_worker_irq
-                0x10004790       0xc8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004870       0xc8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.stdio_usb_init
-                0x10004858       0xe8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x10004858                stdio_usb_init
+                0x10004938       0xe8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10004938                stdio_usb_init
  .text.tud_descriptor_device_cb
-                0x10004940        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10004940                tud_descriptor_device_cb
+                0x10004a20        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10004a20                tud_descriptor_device_cb
  .text.tud_descriptor_configuration_cb
-                0x10004948        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10004948                tud_descriptor_configuration_cb
+                0x10004a28        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10004a28                tud_descriptor_configuration_cb
  .text.tud_descriptor_string_cb
-                0x10004950       0x78 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x10004950                tud_descriptor_string_cb
+                0x10004a30       0x78 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10004a30                tud_descriptor_string_cb
  .text.startup._retrieve_unique_id_on_boot
-                0x100049c8       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x10004aa8       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  .text.pico_get_unique_board_id_string
-                0x100049d8      0x1a8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
-                0x100049d8                pico_get_unique_board_id_string
+                0x10004ab8      0x1a8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x10004ab8                pico_get_unique_board_id_string
  .text.flash_get_unique_id
-                0x10004b80       0x3c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
-                0x10004b80                flash_get_unique_id
+                0x10004c60       0x3c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+                0x10004c60                flash_get_unique_id
  .text.dcd_init
-                0x10004bbc       0x90 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004bbc                dcd_init
+                0x10004c9c       0x90 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004c9c                dcd_init
  .text.dcd_int_enable
-                0x10004c4c        0xc CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004c4c                dcd_int_enable
+                0x10004d2c        0xc CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004d2c                dcd_int_enable
  .text.dcd_set_address
-                0x10004c58       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004c58                dcd_set_address
+                0x10004d38       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004d38                dcd_set_address
  .text.dcd_sof_enable
-                0x10004c6c       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004c6c                dcd_sof_enable
+                0x10004d4c       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004d4c                dcd_sof_enable
  .text.dcd_edpt0_status_complete
-                0x10004c88       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004c88                dcd_edpt0_status_complete
+                0x10004d68       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004d68                dcd_edpt0_status_complete
  .text.dcd_edpt_open
-                0x10004ca4      0x114 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004ca4                dcd_edpt_open
+                0x10004d84      0x114 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004d84                dcd_edpt_open
  .text.dcd_edpt_close_all
-                0x10004db8        0x8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004db8                dcd_edpt_close_all
+                0x10004e98        0x8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004e98                dcd_edpt_close_all
  .text.dcd_edpt_xfer
-                0x10004dc0       0x24 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004dc0                dcd_edpt_xfer
+                0x10004ea0       0x24 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004ea0                dcd_edpt_xfer
  .text.dcd_edpt_stall
-                0x10004de4       0x3c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004de4                dcd_edpt_stall
+                0x10004ec4       0x3c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004ec4                dcd_edpt_stall
  .text.dcd_edpt_clear_stall
-                0x10004e20       0x30 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x10004e20                dcd_edpt_clear_stall
+                0x10004f00       0x30 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10004f00                dcd_edpt_clear_stall
  .text.rp2040_usb_init
-                0x10004e50       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x10004e50                rp2040_usb_init
+                0x10004f30       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10004f30                rp2040_usb_init
  .text.hw_endpoint_xfer_start
-                0x10004e90       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x10004e90                hw_endpoint_xfer_start
+                0x10004f70       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x10004f70                hw_endpoint_xfer_start
  .text.tud_event_hook_cb
-                0x10004ed0        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004ed0                tud_event_hook_cb
+                0x10004fb0        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fb0                tud_event_hook_cb
  .text.tud_sof_cb
-                0x10004ed4        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004ed4                tud_sof_cb
+                0x10004fb4        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fb4                tud_sof_cb
  .text.tud_descriptor_device_qualifier_cb
-                0x10004ed8        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004ed8                tud_descriptor_device_qualifier_cb
+                0x10004fb8        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fb8                tud_descriptor_device_qualifier_cb
  .text.tud_descriptor_other_speed_configuration_cb
-                0x10004edc        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004edc                tud_descriptor_other_speed_configuration_cb
+                0x10004fbc        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fbc                tud_descriptor_other_speed_configuration_cb
  .text.tud_mount_cb
-                0x10004ee0        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004ee0                tud_mount_cb
+                0x10004fc0        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fc0                tud_mount_cb
  .text.tud_umount_cb
-                0x10004ee4        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004ee4                tud_umount_cb
+                0x10004fc4        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fc4                tud_umount_cb
  .text.tud_suspend_cb
-                0x10004ee8        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004ee8                tud_suspend_cb
+                0x10004fc8        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fc8                tud_suspend_cb
  .text.tud_resume_cb
-                0x10004eec        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004eec                tud_resume_cb
+                0x10004fcc        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fcc                tud_resume_cb
  .text.tud_mounted
-                0x10004ef0       0x10 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004ef0                tud_mounted
+                0x10004fd0       0x10 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fd0                tud_mounted
  .text.tud_suspended
-                0x10004f00       0x10 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004f00                tud_suspended
+                0x10004fe0       0x10 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004fe0                tud_suspended
  .text.tud_rhport_init
-                0x10004f10       0xf4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10004f10                tud_rhport_init
+                0x10004ff0       0xf4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10004ff0                tud_rhport_init
  .text.tud_task_ext
-                0x10005004      0x800 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005004                tud_task_ext
+                0x100050e4      0x800 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100050e4                tud_task_ext
  .text.usbd_open_edpt_pair
-                0x10005804       0x9c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005804                usbd_open_edpt_pair
+                0x100058e4       0x9c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100058e4                usbd_open_edpt_pair
  .text.usbd_edpt_open
-                0x100058a0       0x34 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100058a0                usbd_edpt_open
+                0x10005980       0x34 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005980                usbd_edpt_open
  .text.usbd_edpt_claim
-                0x100058d4       0x28 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100058d4                usbd_edpt_claim
+                0x100059b4       0x28 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100059b4                usbd_edpt_claim
  .text.usbd_edpt_release
-                0x100058fc       0x28 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100058fc                usbd_edpt_release
+                0x100059dc       0x28 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x100059dc                usbd_edpt_release
  .text.usbd_edpt_xfer
-                0x10005924       0x4c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x10005924                usbd_edpt_xfer
+                0x10005a04       0x4c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10005a04                usbd_edpt_xfer
  .text.tud_control_status
-                0x10005970       0x2c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10005970                tud_control_status
+                0x10005a50       0x2c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005a50                tud_control_status
  .text.tud_control_xfer
-                0x1000599c       0xa8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x1000599c                tud_control_xfer
+                0x10005a7c       0xa8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005a7c                tud_control_xfer
  .text.usbd_control_reset
-                0x10005a44       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10005a44                usbd_control_reset
+                0x10005b24       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005b24                usbd_control_reset
  .text.usbd_control_set_complete_callback
-                0x10005a58        0xc CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10005a58                usbd_control_set_complete_callback
+                0x10005b38        0xc CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005b38                usbd_control_set_complete_callback
  .text.usbd_control_set_request
-                0x10005a64       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10005a64                usbd_control_set_request
+                0x10005b44       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005b44                usbd_control_set_request
  .text.usbd_control_xfer_cb
-                0x10005a80       0xec CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x10005a80                usbd_control_xfer_cb
+                0x10005b60       0xec CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x10005b60                usbd_control_xfer_cb
  .text._prep_out_transaction.isra.0
-                0x10005b6c       0x6c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005c4c       0x6c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
  .text.tud_cdc_n_connected
-                0x10005bd8       0x2c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005bd8                tud_cdc_n_connected
+                0x10005cb8       0x2c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005cb8                tud_cdc_n_connected
  .text.tud_cdc_n_available
-                0x10005c04       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005c04                tud_cdc_n_available
+                0x10005ce4       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005ce4                tud_cdc_n_available
  .text.tud_cdc_n_read
-                0x10005c18       0x88 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005c18                tud_cdc_n_read
+                0x10005cf8       0x88 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005cf8                tud_cdc_n_read
  .text.tud_cdc_n_write_flush
-                0x10005ca0       0x74 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005ca0                tud_cdc_n_write_flush
+                0x10005d80       0x74 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005d80                tud_cdc_n_write_flush
  .text.tud_cdc_n_write
-                0x10005d14       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005d14                tud_cdc_n_write
+                0x10005df4       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005df4                tud_cdc_n_write
  .text.tud_cdc_n_write_available
-                0x10005d54       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005d54                tud_cdc_n_write_available
+                0x10005e34       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005e34                tud_cdc_n_write_available
  .text.cdcd_init
-                0x10005d68       0x70 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005d68                cdcd_init
+                0x10005e48       0x70 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005e48                cdcd_init
  .text.cdcd_deinit
-                0x10005dd8       0x30 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005dd8                cdcd_deinit
+                0x10005eb8       0x30 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005eb8                cdcd_deinit
  .text.cdcd_reset
-                0x10005e08       0x4c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005e08                cdcd_reset
+                0x10005ee8       0x4c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005ee8                cdcd_reset
  .text.cdcd_open
-                0x10005e54       0xa4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005e54                cdcd_open
+                0x10005f34       0xa4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005f34                cdcd_open
  .text.cdcd_control_xfer_cb
-                0x10005ef8       0xe8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005ef8                cdcd_control_xfer_cb
+                0x10005fd8       0xe8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x10005fd8                cdcd_control_xfer_cb
  .text.cdcd_xfer_cb
-                0x10005fe0      0x100 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x10005fe0                cdcd_xfer_cb
+                0x100060c0      0x100 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x100060c0                cdcd_xfer_cb
  .text.vendord_init
-                0x100060e0       0x5c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
-                0x100060e0                vendord_init
+                0x100061c0       0x5c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x100061c0                vendord_init
  .text.vendord_deinit
-                0x1000613c       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
-                0x1000613c                vendord_deinit
+                0x1000621c       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x1000621c                vendord_deinit
  .text.vendord_reset
-                0x10006158       0x28 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
-                0x10006158                vendord_reset
+                0x10006238       0x28 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x10006238                vendord_reset
  .text.vendord_open
-                0x10006180      0x120 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
-                0x10006180                vendord_open
+                0x10006260      0x120 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x10006260                vendord_open
  .text.vendord_xfer_cb
-                0x100062a0       0x9c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
-                0x100062a0                vendord_xfer_cb
+                0x10006380       0x9c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x10006380                vendord_xfer_cb
  .text.tusb_rhport_init
-                0x1000633c       0x4c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x1000633c                tusb_rhport_init
+                0x1000641c       0x4c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x1000641c                tusb_rhport_init
  .text.tu_edpt_claim
-                0x10006388       0x50 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006388                tu_edpt_claim
+                0x10006468       0x50 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10006468                tu_edpt_claim
  .text.tu_edpt_release
-                0x100063d8       0x38 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x100063d8                tu_edpt_release
+                0x100064b8       0x38 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x100064b8                tu_edpt_release
  .text.tu_edpt_validate
-                0x10006410       0x7c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006410                tu_edpt_validate
+                0x100064f0       0x7c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x100064f0                tu_edpt_validate
  .text.tu_edpt_bind_driver
-                0x1000648c       0x34 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x1000648c                tu_edpt_bind_driver
+                0x1000656c       0x34 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x1000656c                tu_edpt_bind_driver
  .text.tu_edpt_stream_init
-                0x100064c0       0x6c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x100064c0                tu_edpt_stream_init
+                0x100065a0       0x6c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x100065a0                tu_edpt_stream_init
  .text.tu_edpt_stream_deinit
-                0x1000652c        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x1000652c                tu_edpt_stream_deinit
+                0x1000660c        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x1000660c                tu_edpt_stream_deinit
  .text.tu_edpt_stream_write_zlp_if_needed
-                0x10006530       0x68 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006530                tu_edpt_stream_write_zlp_if_needed
+                0x10006610       0x68 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10006610                tu_edpt_stream_write_zlp_if_needed
  .text.tu_edpt_stream_write_xfer
-                0x10006598       0x68 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006598                tu_edpt_stream_write_xfer
+                0x10006678       0x68 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x10006678                tu_edpt_stream_write_xfer
  .text.tu_edpt_stream_read_xfer
-                0x10006600       0xd8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x10006600                tu_edpt_stream_read_xfer
+                0x100066e0       0xd8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x100066e0                tu_edpt_stream_read_xfer
  .text.tu_fifo_config
-                0x100066d8       0x6c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x100066d8                tu_fifo_config
+                0x100067b8       0x6c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x100067b8                tu_fifo_config
  .text.tu_fifo_count
-                0x10006744       0x2c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10006744                tu_fifo_count
+                0x10006824       0x2c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006824                tu_fifo_count
  .text.tu_fifo_empty
-                0x10006770       0x10 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10006770                tu_fifo_empty
+                0x10006850       0x10 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006850                tu_fifo_empty
  .text.tu_fifo_remaining
-                0x10006780       0x2c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10006780                tu_fifo_remaining
+                0x10006860       0x2c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006860                tu_fifo_remaining
  .text.tu_fifo_read
-                0x100067ac       0x9c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x100067ac                tu_fifo_read
+                0x1000688c       0x9c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x1000688c                tu_fifo_read
  .text.tu_fifo_read_n
-                0x10006848       0xe8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10006848                tu_fifo_read_n
+                0x10006928       0xe8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006928                tu_fifo_read_n
  .text.tu_fifo_write
-                0x10006930       0xa4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10006930                tu_fifo_write
+                0x10006a10       0xa4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006a10                tu_fifo_write
  .text.tu_fifo_write_n
-                0x100069d4      0x178 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x100069d4                tu_fifo_write_n
+                0x10006ab4      0x178 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006ab4                tu_fifo_write_n
  .text.tu_fifo_clear
-                0x10006b4c       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10006b4c                tu_fifo_clear
+                0x10006c2c       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006c2c                tu_fifo_clear
  .text.tu_fifo_set_overwritable
-                0x10006b8c       0x48 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x10006b8c                tu_fifo_set_overwritable
- .text.strlen   0x10006bd4       0x5c C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strlen-stub.o)
-                0x10006bd4                strlen
+                0x10006c6c       0x48 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x10006c6c                tu_fifo_set_overwritable
+ .text.strlen   0x10006cb4       0x5c C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp\libg.a(libc_a-strlen-stub.o)
+                0x10006cb4                strlen
  *(.fini)
- .fini          0x10006c30        0x4 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
-                0x10006c30                _fini
- *fill*         0x10006c34        0x4 
- .fini.__stub   0x10006c38       0xc0 linker stubs
+ .fini          0x10006d10        0x4 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crti.o
+                0x10006d10                _fini
+ *fill*         0x10006d14        0x4 
+ .fini.__stub   0x10006d18       0xc0 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -3363,192 +3361,198 @@ LOAD C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
-                0x10006cf8                        . = ALIGN (0x4)
-                0x10006cf8                        PROVIDE (__preinit_array_start = .)
+                0x10006dd8                        . = ALIGN (0x4)
+                0x10006dd8                        PROVIDE (__preinit_array_start = .)
  *(SORT_BY_NAME(.preinit_array.*))
  .preinit_array.00100
-                0x10006cf8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10006cf8                __pre_init_runtime_init_early_resets
+                0x10006dd8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10006dd8                __pre_init_runtime_init_early_resets
  .preinit_array.00101
-                0x10006cfc        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10006cfc                __pre_init_runtime_init_usb_power_down
+                0x10006ddc        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10006ddc                __pre_init_runtime_init_usb_power_down
  .preinit_array.00275
-                0x10006d00        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x10006de0        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .preinit_array.00300
-                0x10006d04        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x10006de4        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
  .preinit_array.00350
-                0x10006d08        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x10006de8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
  .preinit_array.00350
-                0x10006d0c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+                0x10006dec        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
  .preinit_array.00500
-                0x10006d10        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10006d10                __pre_init_runtime_init_clocks
+                0x10006df0        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10006df0                __pre_init_runtime_init_clocks
  .preinit_array.00600
-                0x10006d14        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10006d14                __pre_init_runtime_init_post_clock_resets
+                0x10006df4        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10006df4                __pre_init_runtime_init_post_clock_resets
  .preinit_array.00700
-                0x10006d18        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10006d18                __pre_init_runtime_init_rp2040_gpio_ie_disable
+                0x10006df8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10006df8                __pre_init_runtime_init_rp2040_gpio_ie_disable
  .preinit_array.01000
-                0x10006d1c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10006d1c                __pre_init_runtime_init_spin_locks_reset
+                0x10006dfc        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10006dfc                __pre_init_runtime_init_spin_locks_reset
  .preinit_array.01100
-                0x10006d20        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x10006d20                __pre_init_runtime_init_mutex
+                0x10006e00        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x10006e00                __pre_init_runtime_init_mutex
  .preinit_array.10080
-                0x10006d24        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x10006d24                __pre_init_runtime_init_install_ram_vector_table
+                0x10006e04        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x10006e04                __pre_init_runtime_init_install_ram_vector_table
  .preinit_array.11000
-                0x10006d28        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
-                0x10006d28                __pre_init_runtime_init_default_alarm_pool
+                0x10006e08        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10006e08                __pre_init_runtime_init_default_alarm_pool
  .preinit_array.YYYYY
-                0x10006d2c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x10006d2c                __pre_init_first_per_core_initializer
+                0x10006e0c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10006e0c                __pre_init_first_per_core_initializer
  .preinit_array.ZZZZZ.01200
-                0x10006d30        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x10006d30                __pre_init_runtime_init_per_core_irq_priorities
+                0x10006e10        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x10006e10                __pre_init_runtime_init_per_core_irq_priorities
  *(.preinit_array)
-                0x10006d34                        PROVIDE (__preinit_array_end = .)
-                0x10006d34                        . = ALIGN (0x4)
-                0x10006d34                        PROVIDE (__init_array_start = .)
+                0x10006e14                        PROVIDE (__preinit_array_end = .)
+                0x10006e14                        . = ALIGN (0x4)
+                0x10006e14                        PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  .init_array.01000
-                0x10006d34        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x10006e14        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  *(.init_array)
- .init_array    0x10006d38        0x4 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x10006d3c                        PROVIDE (__init_array_end = .)
-                0x10006d3c                        . = ALIGN (0x4)
+ .init_array    0x10006e18        0x4 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x10006e1c                        PROVIDE (__init_array_end = .)
+                0x10006e1c                        . = ALIGN (0x4)
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array)
                 [!provide]                        PROVIDE (__fini_array_end = .)
  *(.eh_frame*)
- .eh_frame      0x10006d3c        0x0 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
-                0x10006d3c                        . = ALIGN (0x4)
+ .eh_frame      0x10006e1c        0x0 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x10006e1c                        . = ALIGN (0x4)
 
-.glue_7         0x10006d3c        0x0
- .glue_7        0x10006d3c        0x0 linker stubs
+.glue_7         0x10006e1c        0x0
+ .glue_7        0x10006e1c        0x0 linker stubs
 
-.glue_7t        0x10006d3c        0x0
- .glue_7t       0x10006d3c        0x0 linker stubs
+.glue_7t        0x10006e1c        0x0
+ .glue_7t       0x10006e1c        0x0 linker stubs
 
-.vfp11_veneer   0x10006d3c        0x0
- .vfp11_veneer  0x10006d3c        0x0 linker stubs
+.vfp11_veneer   0x10006e1c        0x0
+ .vfp11_veneer  0x10006e1c        0x0 linker stubs
 
-.v4_bx          0x10006d3c        0x0
- .v4_bx         0x10006d3c        0x0 linker stubs
+.v4_bx          0x10006e1c        0x0
+ .v4_bx         0x10006e1c        0x0 linker stubs
 
-.iplt           0x10006d3c        0x0
- .iplt          0x10006d3c        0x0 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x10006e1c        0x0
+ .iplt          0x10006e1c        0x0 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x10006d40      0x68c
+.rodata         0x10006e20      0x6ec
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
  .rodata.main.str1.4
-                0x10006d40      0x1dc CMakeFiles/key_latency.dir/main.c.obj
-                                 0x6c (size before relaxing)
- .rodata.press_pins
-                0x10006f1c        0xc CMakeFiles/key_latency.dir/main.c.obj
+                0x10006e20      0x224 CMakeFiles/key_latency.dir/main.c.obj
+                                 0xb4 (size before relaxing)
+ .rodata.PATTERN_CHARS
+                0x10007044        0xc CMakeFiles/key_latency.dir/main.c.obj
+ .rodata.PATTERN_PINS
+                0x10007050        0xc CMakeFiles/key_latency.dir/main.c.obj
  .rodata.panic.str1.4
-                0x10006f28       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
+                0x1000705c       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
  .rodata.spin_lock_claim_unused.str1.4
-                0x10006f28       0x1b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x1000705c       0x1b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
  .rodata.user_irq_claim_unused.str1.4
-                0x10006f28       0x1b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x1000705c       0x1b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x1000705c        0x4 
+ .rodata.nil_time
+                0x10007060        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x10007060                nil_time
  .rodata.timer_hardware_alarm_claim.str1.4
-                0x10006f28       0x22 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x10007068       0x22 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .rodata.hard_assertion_failure.str1.4
-                0x10006f28        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x10007068        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .rodata.str1.4
-                0x10006f28       0x40 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007068       0x40 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_84
-                0x10006f28        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007068        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_78
-                0x10006f34        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007074        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_54
-                0x10006f40        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007080        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_48
-                0x10006f4c        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1000708c        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_42
-                0x10006f58        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007098        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_34
-                0x10006f64        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x100070a4        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_26
-                0x10006f70        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x100070b0        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata._ftoa.str1.4
-                0x10006f7c       0x15 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100070bc       0x15 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata._vsnprintf
-                0x10006f7c      0x19c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x100070bc      0x19c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.pow10.0
-                0x10007118       0x50 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x10007258       0x50 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.crlf_str.0
-                0x10007168        0x2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x1000716a        0x2 
+                0x100072a8        0x2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x100072aa        0x2 
  .rodata._resetd_driver
-                0x1000716c       0x20 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x100072ac       0x20 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .rodata.desc_ms_os_20
-                0x1000718c       0xa6 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
- *fill*         0x10007232        0x2 
+                0x100072cc       0xa6 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+ *fill*         0x10007372        0x2 
  .rodata.desc_bos
-                0x10007234       0x21 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x10007234                desc_bos
+                0x10007374       0x21 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x10007374                desc_bos
  .rodata.str1.4
-                0x10007255       0x13 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- *fill*         0x10007255        0x3 
+                0x10007395       0x13 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ *fill*         0x10007395        0x3 
  .rodata.__bi_202.0
-                0x10007258        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x10007398        0xc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .rodata.str1.4
-                0x10007264       0x2a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x100073a4       0x2a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_str
-                0x10007264       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x100073a4       0x18 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_cfg
-                0x1000727c       0x54 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x100073bc       0x54 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_device
-                0x100072d0       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x10007410       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.str1.4
-                0x100072e2       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x10007422       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata.str1.4
-                0x100072e2       0x48 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x100072e2        0x2 
+                0x10007422       0x48 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x10007422        0x2 
  .rodata.tud_task_ext
-                0x100072e4       0x8c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .rodata        0x10007370       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x10007424       0x8c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .rodata        0x100074b0       0x1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata._usbd_driver
-                0x1000738c       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x100073cc                        . = ALIGN (0x4)
+                0x100074cc       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x1000750c                        . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x100073cc                        . = ALIGN (0x4)
+                0x1000750c                        . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x100073cc                        __exidx_start = .
+                0x1000750c                        __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x100073cc                        __exidx_end = .
-                0x100073cc                        . = ALIGN (0x4)
-                0x100073cc                        __binary_info_start = .
+                0x1000750c                        __exidx_end = .
+                0x1000750c                        . = ALIGN (0x4)
+                0x1000750c                        __binary_info_start = .
 
-.binary_info    0x100073cc       0x20
+.binary_info    0x1000750c       0x20
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr84
-                0x100073cc        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1000750c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr78
-                0x100073d0        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007510        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr54
-                0x100073d4        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007514        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr48
-                0x100073d8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007518        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr42
-                0x100073dc        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x1000751c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr34
-                0x100073e0        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007520        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr26
-                0x100073e4        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x10007524        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  *(.binary_info.*)
  .binary_info.__bi_ptr202
-                0x100073e8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x100073ec                        __binary_info_end = .
-                0x100073ec                        . = ALIGN (0x4)
+                0x10007528        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x1000752c                        __binary_info_end = .
+                0x1000752c                        . = ALIGN (0x4)
 
 .ram_vector_table
                 0x20000000       0xc0
@@ -3562,7 +3566,7 @@ LOAD C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
                 0x200000c0                        . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.data           0x200000c0      0xff0 load address 0x100073ec
+.data           0x200000c0      0xff0 load address 0x1000752c
                 0x200000c0                        __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -3671,23 +3675,23 @@ LOAD C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
                 0x200010b0                        . = ALIGN (0x4)
 
 .tm_clone_table
-                0x200010b0        0x0 load address 0x100083dc
+                0x200010b0        0x0 load address 0x1000851c
  .tm_clone_table
                 0x200010b0        0x0 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  .tm_clone_table
                 0x200010b0        0x0 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtend.o
 
-.igot.plt       0x200010b0        0x0 load address 0x100083dc
+.igot.plt       0x200010b0        0x0 load address 0x1000851c
  .igot.plt      0x200010b0        0x0 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.tdata          0x200010b0        0x0 load address 0x100083dc
+.tdata          0x200010b0        0x0 load address 0x1000851c
                 0x200010b0                        . = ALIGN (0x4)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x200010b0                        __tdata_end = .
                 0x200010b0                        PROVIDE (__data_end__ = .)
-                0x100073ec                        __etext = LOADADDR (.data)
+                0x1000752c                        __etext = LOADADDR (.data)
 
-.tbss           0x200010b0        0x0 load address 0x100083dc
+.tbss           0x200010b0        0x0 load address 0x1000851c
                 0x200010b0                        . = ALIGN (0x4)
                 0x200010b0                        __bss_start__ = .
                 0x200010b0                        __tls_base = .
@@ -3695,137 +3699,137 @@ LOAD C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
  *(.tcommon)
                 0x200010b0                        __tls_end = .
 
-.bss            0x200010b0     0x1708 load address 0x100083dc
+.bss            0x200010b0     0x1b08 load address 0x1000851c
                 0x200010b0                        . = ALIGN (0x4)
                 0x200010b0                        __tbss_end = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
  .bss.default_alarm_pool_entries
                 0x200010b0      0x180 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
  .bss.event_queue
-                0x20001230      0x800 CMakeFiles/key_latency.dir/main.c.obj
+                0x20001230      0xc00 CMakeFiles/key_latency.dir/main.c.obj
  .bss.last_avail_time.1
-                0x20001a30        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .bss.sd_table  0x20001a38      0x100 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
-                0x20001a38                sd_table
- .bss.sf_table  0x20001b38      0x100 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
-                0x20001b38                sf_table
+                0x20001e30        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .bss.sd_table  0x20001e38      0x100 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x20001e38                sd_table
+ .bss.sf_table  0x20001f38      0x100 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x20001f38                sf_table
  .bss._app_driver
-                0x20001c38        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x20002038        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._cdcd_epbuf
-                0x20001c3c       0x80 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x2000203c       0x80 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
  .bss._cdcd_fifo_cfg
-                0x20001cbc        0x1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
- *fill*         0x20001cbd        0x3 
+                0x200020bc        0x1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+ *fill*         0x200020bd        0x3 
  .bss._cdcd_itf
-                0x20001cc0       0xc8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x200020c0       0xc8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
  .bss._ctrl_epbuf
-                0x20001d88       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x20002188       0x40 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
  .bss._ctrl_xfer
-                0x20001dc8       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x200021c8       0x14 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
  .bss._tusb_rhport_role
-                0x20001ddc        0x2 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x20001ddc                _tusb_rhport_role
- *fill*         0x20001dde        0x2 
+                0x200021dc        0x2 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x200021dc                _tusb_rhport_role
+ *fill*         0x200021de        0x2 
  .bss._ubsd_mutexdef
-                0x20001de0        0x8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x200021e0        0x8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._usbd_dev
-                0x20001de8       0x54 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x200021e8       0x54 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._usbd_mutex
-                0x20001e3c        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .bss._usbd_q   0x20001e40        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x2000223c        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .bss._usbd_q   0x20002240        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._usbd_qdef_buf
-                0x20001e44       0xc0 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x20001e44                _usbd_qdef_buf
+                0x20002244       0xc0 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x20002244                _usbd_qdef_buf
  .bss._vendord_epbuf
-                0x20001f04       0x80 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x20002304       0x80 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
  .bss._vendord_itf
-                0x20001f84      0x24c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x20002384      0x24c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
  .bss.boot2_copyout
-                0x200021d0      0x100 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+                0x200025d0      0x100 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
  .bss.chars_available_callback
-                0x200022d0        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x200026d0        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .bss.chars_available_param
-                0x200022d4        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .bss.claimed   0x200022d8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- .bss.claimed   0x200022dc        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x200022dd        0x3 
+                0x200026d4        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .bss.claimed   0x200026d8        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ .bss.claimed   0x200026dc        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x200026dd        0x3 
  .bss.configured_freq
-                0x200022e0       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x200026e0       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
  .bss.desc_str.0
-                0x20002308       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- .bss.drivers   0x20002330        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .bss.dropped   0x20002334        0x4 CMakeFiles/key_latency.dir/main.c.obj
+                0x20002708       0x28 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ .bss.drivers   0x20002730        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .bss.dropped   0x20002734        0x4 CMakeFiles/key_latency.dir/main.c.obj
  .bss.e15_last_sof
-                0x20002338        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x20002338                e15_last_sof
- .bss.filter    0x2000233c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x20002738        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x20002738                e15_last_sof
+ .bss.filter    0x2000273c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .bss.hw_endpoints
-                0x20002340      0x400 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x20002740      0x400 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .bss.lazy_vsnprintf
-                0x20002740        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x20002b40        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .bss.load_value
-                0x20002744        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x20002b44        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .bss.next_buffer_ptr
-                0x20002748        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .bss.object.0  0x2000274c       0x18 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
+                0x20002b48        0x4 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .bss.object.0  0x20002b4c       0x18 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
  .bss.one_shot_timer_crit_sec
-                0x20002764        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .bss.pools     0x2000276c       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
- .bss.q_read    0x2000277c        0x4 CMakeFiles/key_latency.dir/main.c.obj
- .bss.q_write   0x20002780        0x4 CMakeFiles/key_latency.dir/main.c.obj
+                0x20002b64        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .bss.pools     0x20002b6c       0x10 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+ .bss.q_read    0x20002b7c        0x4 CMakeFiles/key_latency.dir/main.c.obj
+ .bss.q_write   0x20002b80        0x4 CMakeFiles/key_latency.dir/main.c.obj
  .bss.retrieved_id
-                0x20002784        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x20002b84        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  .bss.sf_clz_func
-                0x2000278c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
-                0x2000278c                sf_clz_func
+                0x20002b8c        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x20002b8c                sf_clz_func
  .bss.sleep_notifier
-                0x20002790        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x20002b90        0x4 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
  .bss.stdio_usb_mutex
-                0x20002794        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x20002b94        0x8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .bss.usbd_serial_str
-                0x2000279c       0x11 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x20002b9c       0x11 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .bss._app_driver_count
-                0x200027ad        0x1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x20002bad        0x1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._sof_enable
-                0x200027ae        0x1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x20002bae        0x1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .bss._usbd_queued_setup
-                0x200027af        0x1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x20002baf        0x1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss.boot2_copyout_valid
-                0x200027b0        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+                0x20002bb0        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
  .bss.irq_handler_chain_free_slot_head
-                0x200027b1        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .bss.itf_num   0x200027b2        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x20002bb1        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ .bss.itf_num   0x20002bb2        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .bss.low_priority_irq_num
-                0x200027b3        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x20002bb3        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .bss.one_shot_timer_pending
-                0x200027b4        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x20002bb4        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .bss.user_irq_claimed
-                0x200027b5        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x20002bb5        0x1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  *(COMMON)
-                0x200027b8                        . = ALIGN (0x4)
- *fill*         0x200027b6        0x2 
-                0x200027b8                        __bss_end__ = .
+                0x20002bb8                        . = ALIGN (0x4)
+ *fill*         0x20002bb6        0x2 
+                0x20002bb8                        __bss_end__ = .
 
-.heap           0x200027b8      0x800 load address 0x100083dc
-                0x200027b8                        __end__ = .
-                0x200027b8                        end = __end__
+.heap           0x20002bb8      0x800 load address 0x1000851c
+                0x20002bb8                        __end__ = .
+                0x20002bb8                        end = __end__
  *(.heap*)
- .heap          0x200027b8      0x800 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
+ .heap          0x20002bb8      0x800 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
                 0x20040000                        __HeapLimit = (ORIGIN (RAM) + LENGTH (RAM))
 
-.scratch_x      0x20040000        0x0 load address 0x100083dc
+.scratch_x      0x20040000        0x0 load address 0x1000851c
                 0x20040000                        __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x20040000                        . = ALIGN (0x4)
                 0x20040000                        __scratch_x_end__ = .
-                0x100083dc                        __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x1000851c                        __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x20041000        0x0 load address 0x100083dc
+.scratch_y      0x20041000        0x0 load address 0x1000851c
                 0x20041000                        __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x20041000                        . = ALIGN (0x4)
                 0x20041000                        __scratch_y_end__ = .
-                0x100083dc                        __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x1000851c                        __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .stack1_dummy
  *(.stack1*)
@@ -3837,9 +3841,9 @@ LOAD C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crt0.o
 .rel.dyn        0x20041800        0x0
  .rel.iplt      0x20041800        0x0 C:/gcc-arm/bin/../lib/gcc/arm-none-eabi/14.2.1/thumb/v6-m/nofp/crtbegin.o
 
-.flash_end      0x100083dc        0x0
+.flash_end      0x1000851c        0x0
  *(.embedded_end_block*)
-                0x100083dc                        PROVIDE (__flash_binary_end = .)
+                0x1000851c                        PROVIDE (__flash_binary_end = .)
                 0x20040000                        __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x20041000                        __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x20042000                        __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -4116,190 +4120,190 @@ LOAD linker stubs
  .comment       0x00000045       0x46 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
  .comment       0x00000045       0x46 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 
-.debug_info     0x00000000    0x3124b
- .debug_info    0x00000000      0xf19 CMakeFiles/key_latency.dir/main.c.obj
- .debug_info    0x00000f19     0x2421 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_info    0x0000333a      0x129 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
- .debug_info    0x00003463      0x1bf CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_info    0x00003622      0x9a1 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
- .debug_info    0x00003fc3      0x45c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- .debug_info    0x0000441f      0x245 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_info    0x00004664     0x2233 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .debug_info    0x00006897      0x15f CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
- .debug_info    0x000069f6     0x2815 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
- .debug_info    0x0000920b      0x308 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
- .debug_info    0x00009513     0x5065 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
- .debug_info    0x0000e578     0x2b37 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- .debug_info    0x000110af     0x2a05 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_info    0x00013ab4      0x4e5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
- .debug_info    0x00013f99      0x8e0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
- .debug_info    0x00014879      0x248 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_info    0x00014ac1      0x678 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_info    0x00015139      0x1d0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_info    0x00015309      0x21a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_info    0x00015523      0x7ea CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_info    0x00015d0d      0x781 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_info    0x0001648e       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_info    0x000164b1       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
- .debug_info    0x000164d4       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
- .debug_info    0x000164f7      0x27e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_info    0x00016775       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
- .debug_info    0x00016798       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
- .debug_info    0x000167bc       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
- .debug_info    0x000167df      0x27e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_info    0x00016a5d       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
- .debug_info    0x00016a80       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_info    0x00016aa3      0x2b8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
- .debug_info    0x00016d5b     0x22f2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .debug_info    0x0001904d       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
- .debug_info    0x00019070      0xbbe CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_info    0x00019c2e     0x1c76 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_info    0x0001b8a4      0xa93 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
- .debug_info    0x0001c337     0x1f2a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .debug_info    0x0001e261      0x6aa CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- .debug_info    0x0001e90b      0x201 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
- .debug_info    0x0001eb0c     0x177f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
- .debug_info    0x0002028b     0x2b1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .debug_info    0x00022da7     0x117c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- .debug_info    0x00023f23     0x49cc CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .debug_info    0x000288ef      0xb66 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
- .debug_info    0x00029455     0x1fd2 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
- .debug_info    0x0002b427     0x1737 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
- .debug_info    0x0002cb5e     0x1eb0 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
- .debug_info    0x0002ea0e     0x283d CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+.debug_info     0x00000000    0x31596
+ .debug_info    0x00000000     0x1264 CMakeFiles/key_latency.dir/main.c.obj
+ .debug_info    0x00001264     0x2421 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_info    0x00003685      0x129 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
+ .debug_info    0x000037ae      0x1bf CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_info    0x0000396d      0x9a1 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
+ .debug_info    0x0000430e      0x45c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_info    0x0000476a      0x245 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_info    0x000049af     0x2233 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_info    0x00006be2      0x15f CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
+ .debug_info    0x00006d41     0x2815 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+ .debug_info    0x00009556      0x308 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
+ .debug_info    0x0000985e     0x5065 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+ .debug_info    0x0000e8c3     0x2b37 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_info    0x000113fa     0x2a05 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_info    0x00013dff      0x4e5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_info    0x000142e4      0x8e0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+ .debug_info    0x00014bc4      0x248 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_info    0x00014e0c      0x678 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_info    0x00015484      0x1d0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_info    0x00015654      0x21a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_info    0x0001586e      0x7ea CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_info    0x00016058      0x781 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_info    0x000167d9       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_info    0x000167fc       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_info    0x0001681f       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_info    0x00016842      0x27e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_info    0x00016ac0       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_info    0x00016ae3       0x24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_info    0x00016b07       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_info    0x00016b2a      0x27e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_info    0x00016da8       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_info    0x00016dcb       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_info    0x00016dee      0x2b8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+ .debug_info    0x000170a6     0x22f2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .debug_info    0x00019398       0x23 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_info    0x000193bb      0xbbe CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_info    0x00019f79     0x1c76 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_info    0x0001bbef      0xa93 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+ .debug_info    0x0001c682     0x1f2a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .debug_info    0x0001e5ac      0x6aa CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ .debug_info    0x0001ec56      0x201 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+ .debug_info    0x0001ee57     0x177f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+ .debug_info    0x000205d6     0x2b1c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .debug_info    0x000230f2     0x117c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ .debug_info    0x0002426e     0x49cc CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .debug_info    0x00028c3a      0xb66 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+ .debug_info    0x000297a0     0x1fd2 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+ .debug_info    0x0002b772     0x1737 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+ .debug_info    0x0002cea9     0x1eb0 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+ .debug_info    0x0002ed59     0x283d CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 
-.debug_abbrev   0x00000000     0x899a
- .debug_abbrev  0x00000000      0x31a CMakeFiles/key_latency.dir/main.c.obj
- .debug_abbrev  0x0000031a      0x4f9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_abbrev  0x00000813       0x77 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
- .debug_abbrev  0x0000088a      0x12b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_abbrev  0x000009b5      0x328 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
- .debug_abbrev  0x00000cdd      0x20f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- .debug_abbrev  0x00000eec      0x1bb CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_abbrev  0x000010a7      0x614 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .debug_abbrev  0x000016bb       0xee CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
- .debug_abbrev  0x000017a9      0x48c CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
- .debug_abbrev  0x00001c35      0x1d5 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
- .debug_abbrev  0x00001e0a      0x659 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
- .debug_abbrev  0x00002463      0x4f2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- .debug_abbrev  0x00002955      0x512 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_abbrev  0x00002e67      0x1d2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
- .debug_abbrev  0x00003039      0x2c9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
- .debug_abbrev  0x00003302      0x145 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_abbrev  0x00003447      0x1bc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_abbrev  0x00003603      0x11d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_abbrev  0x00003720      0x182 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_abbrev  0x000038a2      0x26b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_abbrev  0x00003b0d      0x2af CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_abbrev  0x00003dbc       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_abbrev  0x00003dce       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
- .debug_abbrev  0x00003de0       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
- .debug_abbrev  0x00003df2      0x17a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_abbrev  0x00003f6c       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
- .debug_abbrev  0x00003f7e       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
- .debug_abbrev  0x00003f92       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
- .debug_abbrev  0x00003fa4      0x173 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_abbrev  0x00004117       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
- .debug_abbrev  0x00004129       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_abbrev  0x0000413b       0xb8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
- .debug_abbrev  0x000041f3      0x50c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .debug_abbrev  0x000046ff       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
- .debug_abbrev  0x00004711      0x352 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_abbrev  0x00004a63      0x5c4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_abbrev  0x00005027      0x3aa CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
- .debug_abbrev  0x000053d1      0x5bd CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .debug_abbrev  0x0000598e      0x16c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- .debug_abbrev  0x00005afa      0x153 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
- .debug_abbrev  0x00005c4d      0x412 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
- .debug_abbrev  0x0000605f      0x5d9 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .debug_abbrev  0x00006638      0x480 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- .debug_abbrev  0x00006ab8      0x7f2 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .debug_abbrev  0x000072aa      0x38d CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
- .debug_abbrev  0x00007637      0x560 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
- .debug_abbrev  0x00007b97      0x48c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
- .debug_abbrev  0x00008023      0x534 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
- .debug_abbrev  0x00008557      0x443 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+.debug_abbrev   0x00000000     0x89c0
+ .debug_abbrev  0x00000000      0x340 CMakeFiles/key_latency.dir/main.c.obj
+ .debug_abbrev  0x00000340      0x4f9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_abbrev  0x00000839       0x77 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
+ .debug_abbrev  0x000008b0      0x12b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_abbrev  0x000009db      0x328 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
+ .debug_abbrev  0x00000d03      0x20f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_abbrev  0x00000f12      0x1bb CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_abbrev  0x000010cd      0x614 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_abbrev  0x000016e1       0xee CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
+ .debug_abbrev  0x000017cf      0x48c CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+ .debug_abbrev  0x00001c5b      0x1d5 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
+ .debug_abbrev  0x00001e30      0x659 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+ .debug_abbrev  0x00002489      0x4f2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_abbrev  0x0000297b      0x512 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_abbrev  0x00002e8d      0x1d2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_abbrev  0x0000305f      0x2c9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+ .debug_abbrev  0x00003328      0x145 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_abbrev  0x0000346d      0x1bc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_abbrev  0x00003629      0x11d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_abbrev  0x00003746      0x182 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_abbrev  0x000038c8      0x26b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_abbrev  0x00003b33      0x2af CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_abbrev  0x00003de2       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_abbrev  0x00003df4       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_abbrev  0x00003e06       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_abbrev  0x00003e18      0x17a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_abbrev  0x00003f92       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_abbrev  0x00003fa4       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_abbrev  0x00003fb8       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_abbrev  0x00003fca      0x173 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_abbrev  0x0000413d       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_abbrev  0x0000414f       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_abbrev  0x00004161       0xb8 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+ .debug_abbrev  0x00004219      0x50c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .debug_abbrev  0x00004725       0x12 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_abbrev  0x00004737      0x352 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_abbrev  0x00004a89      0x5c4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_abbrev  0x0000504d      0x3aa CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+ .debug_abbrev  0x000053f7      0x5bd CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .debug_abbrev  0x000059b4      0x16c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ .debug_abbrev  0x00005b20      0x153 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+ .debug_abbrev  0x00005c73      0x412 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+ .debug_abbrev  0x00006085      0x5d9 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .debug_abbrev  0x0000665e      0x480 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ .debug_abbrev  0x00006ade      0x7f2 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .debug_abbrev  0x000072d0      0x38d CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+ .debug_abbrev  0x0000765d      0x560 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+ .debug_abbrev  0x00007bbd      0x48c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+ .debug_abbrev  0x00008049      0x534 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+ .debug_abbrev  0x0000857d      0x443 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 
 .debug_loclists
-                0x00000000    0x1ae2e
+                0x00000000    0x1b077
  .debug_loclists
-                0x00000000      0x491 CMakeFiles/key_latency.dir/main.c.obj
+                0x00000000      0x6da CMakeFiles/key_latency.dir/main.c.obj
  .debug_loclists
-                0x00000491     0x1a7f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x000006da     0x1a7f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
  .debug_loclists
-                0x00001f10       0x53 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
+                0x00002159       0x53 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
  .debug_loclists
-                0x00001f63      0x349 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
+                0x000021ac      0x349 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
  .debug_loclists
-                0x000022ac      0x108 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x000024f5      0x108 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
  .debug_loclists
-                0x000023b4       0x7d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+                0x000025fd       0x7d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
  .debug_loclists
-                0x00002431     0x11ed CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000267a     0x11ed CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  .debug_loclists
-                0x0000361e       0x41 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x00003867       0x41 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
  .debug_loclists
-                0x0000365f      0xaec CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x000038a8      0xaec CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
  .debug_loclists
-                0x0000414b       0xb6 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
+                0x00004394       0xb6 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
  .debug_loclists
-                0x00004201     0x27af CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000444a     0x27af CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
  .debug_loclists
-                0x000069b0     0x19f1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x00006bf9     0x19f1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .debug_loclists
-                0x000083a1     0x2b7c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x000085ea     0x2b7c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
  .debug_loclists
-                0x0000af1d      0x1e0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x0000b166      0x1e0 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
  .debug_loclists
-                0x0000b0fd      0x532 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x0000b346      0x532 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .debug_loclists
-                0x0000b62f       0x47 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
+                0x0000b878       0x47 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
  .debug_loclists
-                0x0000b676      0x351 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x0000b8bf      0x351 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
  .debug_loclists
-                0x0000b9c7       0x48 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x0000bc10       0x48 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
  .debug_loclists
-                0x0000ba0f       0x7e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000bc58       0x7e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .debug_loclists
-                0x0000ba8d      0x139 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000bcd6      0x139 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
  .debug_loclists
-                0x0000bbc6       0x74 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+                0x0000be0f       0x74 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
  .debug_loclists
-                0x0000bc3a       0x3d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x0000be83       0x3d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
  .debug_loclists
-                0x0000bc77       0x59 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x0000bec0       0x59 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
  .debug_loclists
-                0x0000bcd0     0x355f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000bf19     0x355f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .debug_loclists
-                0x0000f22f      0x44e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x0000f478      0x44e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
  .debug_loclists
-                0x0000f67d      0xf4f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000f8c6      0xf4f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .debug_loclists
-                0x000105cc      0x266 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x00010815      0x266 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .debug_loclists
-                0x00010832      0x7cb CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x00010a7b      0x7cb CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .debug_loclists
-                0x00010ffd       0xed CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x00011246       0xed CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .debug_loclists
-                0x000110ea      0x3d5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x00011333      0x3d5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  .debug_loclists
-                0x000114bf      0xb24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+                0x00011708      0xb24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
  .debug_loclists
-                0x00011fe3     0x1bde CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0001222c     0x1bde CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .debug_loclists
-                0x00013bc1      0x719 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x00013e0a      0x719 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
  .debug_loclists
-                0x000142da     0x21ed CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x00014523     0x21ed CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .debug_loclists
-                0x000164c7      0x45e CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x00016710      0x45e CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
  .debug_loclists
-                0x00016925      0xdc9 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x00016b6e      0xdc9 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
  .debug_loclists
-                0x000176ee      0x7e5 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x00017937      0x7e5 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
  .debug_loclists
-                0x00017ed3      0xf80 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x0001811c      0xf80 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
  .debug_loclists
-                0x00018e53     0x1fdb CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x0001909c     0x1fdb CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 
 .debug_aranges  0x00000000     0x1678
  .debug_aranges
@@ -4404,208 +4408,208 @@ LOAD linker stubs
                 0x000015c8       0xb0 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 
 .debug_rnglists
-                0x00000000     0x45af
+                0x00000000     0x45ea
  .debug_rnglists
-                0x00000000       0x57 CMakeFiles/key_latency.dir/main.c.obj
+                0x00000000       0x92 CMakeFiles/key_latency.dir/main.c.obj
  .debug_rnglists
-                0x00000057      0x5ca CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x00000092      0x5ca CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
  .debug_rnglists
-                0x00000621       0x13 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
+                0x0000065c       0x13 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
  .debug_rnglists
-                0x00000634       0x19 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
+                0x0000066f       0x19 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
  .debug_rnglists
-                0x0000064d       0xb6 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
+                0x00000688       0xb6 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
  .debug_rnglists
-                0x00000703       0x58 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x0000073e       0x58 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
  .debug_rnglists
-                0x0000075b       0x3d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+                0x00000796       0x3d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
  .debug_rnglists
-                0x00000798      0x37d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x000007d3      0x37d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
  .debug_rnglists
-                0x00000b15       0x1f CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x00000b50       0x1f CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
  .debug_rnglists
-                0x00000b34      0x325 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x00000b6f      0x325 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
  .debug_rnglists
-                0x00000e59       0x2b CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
+                0x00000e94       0x2b CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
  .debug_rnglists
-                0x00000e84      0x7dc CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+                0x00000ebf      0x7dc CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
  .debug_rnglists
-                0x00001660      0x2c6 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000169b      0x2c6 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .debug_rnglists
-                0x00001926      0x5be CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x00001961      0x5be CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
  .debug_rnglists
-                0x00001ee4       0x5c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x00001f1f       0x5c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
  .debug_rnglists
-                0x00001f40       0xe5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x00001f7b       0xe5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .debug_rnglists
-                0x00002025       0x2b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
+                0x00002060       0x2b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
  .debug_rnglists
-                0x00002050      0x112 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x0000208b      0x112 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
  .debug_rnglists
-                0x00002162       0x1f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x0000219d       0x1f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
  .debug_rnglists
-                0x00002181       0x3d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x000021bc       0x3d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .debug_rnglists
-                0x000021be       0x4a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x000021f9       0x4a CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
  .debug_rnglists
-                0x00002208       0x20 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+                0x00002243       0x20 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
  .debug_rnglists
-                0x00002228       0x43 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x00002263       0x43 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .debug_rnglists
-                0x0000226b       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
+                0x000022a6       0x2c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
  .debug_rnglists
-                0x00002297       0xf9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x000022d2       0xf9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
  .debug_rnglists
-                0x00002390       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x000023cb       0x14 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
  .debug_rnglists
-                0x000023a4       0x99 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x000023df       0x99 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
  .debug_rnglists
-                0x0000243d       0xe5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+                0x00002478       0xe5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
  .debug_rnglists
-                0x00002522       0x13 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x0000255d       0x13 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
  .debug_rnglists
-                0x00002535       0x38 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+                0x00002570       0x38 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
  .debug_rnglists
-                0x0000256d       0x25 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x000025a8       0x25 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
  .debug_rnglists
-                0x00002592      0x2a2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x000025cd      0x2a2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .debug_rnglists
-                0x00002834       0x1b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
+                0x0000286f       0x1b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
  .debug_rnglists
-                0x0000284f       0x85 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x0000288a       0x85 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
  .debug_rnglists
-                0x000028d4      0x2bb CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000290f      0x2bb CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .debug_rnglists
-                0x00002b8f       0x43 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x00002bca       0x43 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .debug_rnglists
-                0x00002bd2      0x14f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x00002c0d      0x14f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .debug_rnglists
-                0x00002d21       0x2b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x00002d5c       0x2b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .debug_rnglists
-                0x00002d4c       0x70 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+                0x00002d87       0x70 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
  .debug_rnglists
-                0x00002dbc      0x368 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+                0x00002df7      0x368 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
  .debug_rnglists
-                0x00003124      0x425 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000315f      0x425 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .debug_rnglists
-                0x00003549       0xe8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x00003584       0xe8 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
  .debug_rnglists
-                0x00003631      0x601 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000366c      0x601 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .debug_rnglists
-                0x00003c32       0x8e CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x00003c6d       0x8e CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
  .debug_rnglists
-                0x00003cc0      0x1ee CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x00003cfb      0x1ee CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
  .debug_rnglists
-                0x00003eae      0x11e CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+                0x00003ee9      0x11e CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
  .debug_rnglists
-                0x00003fcc      0x210 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x00004007      0x210 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
  .debug_rnglists
-                0x000041dc      0x3d3 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x00004217      0x3d3 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 
-.debug_line     0x00000000    0x2567c
- .debug_line    0x00000000      0x895 CMakeFiles/key_latency.dir/main.c.obj
- .debug_line    0x00000895     0x1d24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_line    0x000025b9      0x296 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
- .debug_line    0x0000284f      0x27e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_line    0x00002acd      0x9b2 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
- .debug_line    0x0000347f      0x548 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- .debug_line    0x000039c7      0x40c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_line    0x00003dd3     0x18e5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .debug_line    0x000056b8      0x337 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
- .debug_line    0x000059ef     0x1cb2 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
- .debug_line    0x000076a1      0x489 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
- .debug_line    0x00007b2a     0x3706 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
- .debug_line    0x0000b230     0x1ea5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- .debug_line    0x0000d0d5     0x2270 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_line    0x0000f345      0x5a2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
- .debug_line    0x0000f8e7      0x84e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
- .debug_line    0x00010135      0x396 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_line    0x000104cb      0x458 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_line    0x00010923      0x3b1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_line    0x00010cd4      0x34d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_line    0x00011021      0x7ba CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_line    0x000117db      0x663 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_line    0x00011e3e      0x108 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_line    0x00011f46      0x2a9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
- .debug_line    0x000121ef      0x452 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
- .debug_line    0x00012641      0x4ae CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_line    0x00012aef      0x66d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
- .debug_line    0x0001315c       0x61 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
- .debug_line    0x000131bd      0x3d2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
- .debug_line    0x0001358f      0x3c3 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_line    0x00013952      0x195 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
- .debug_line    0x00013ae7       0x94 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_line    0x00013b7b      0x20b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
- .debug_line    0x00013d86     0x1cea CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .debug_line    0x00015a70       0xa2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
- .debug_line    0x00015b12      0x972 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_line    0x00016484     0x15cf CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_line    0x00017a53      0x5aa CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
- .debug_line    0x00017ffd     0x1442 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .debug_line    0x0001943f      0x431 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- .debug_line    0x00019870      0x679 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
- .debug_line    0x00019ee9      0xf45 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
- .debug_line    0x0001ae2e     0x2002 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .debug_line    0x0001ce30      0xdca CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- .debug_line    0x0001dbfa     0x299c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .debug_line    0x00020596      0x6c1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
- .debug_line    0x00020c57     0x114c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
- .debug_line    0x00021da3      0xb5d CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
- .debug_line    0x00022900     0x12e5 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
- .debug_line    0x00023be5     0x1a97 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+.debug_line     0x00000000    0x257b2
+ .debug_line    0x00000000      0x9cb CMakeFiles/key_latency.dir/main.c.obj
+ .debug_line    0x000009cb     0x1d24 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_line    0x000026ef      0x296 CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
+ .debug_line    0x00002985      0x27e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_line    0x00002c03      0x9b2 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
+ .debug_line    0x000035b5      0x548 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_line    0x00003afd      0x40c CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_line    0x00003f09     0x18e5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_line    0x000057ee      0x337 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
+ .debug_line    0x00005b25     0x1cb2 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+ .debug_line    0x000077d7      0x489 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
+ .debug_line    0x00007c60     0x3706 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+ .debug_line    0x0000b366     0x1ea5 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_line    0x0000d20b     0x2270 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_line    0x0000f47b      0x5a2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_line    0x0000fa1d      0x84e CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+ .debug_line    0x0001026b      0x396 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_line    0x00010601      0x458 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_line    0x00010a59      0x3b1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_line    0x00010e0a      0x34d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_line    0x00011157      0x7ba CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_line    0x00011911      0x663 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_line    0x00011f74      0x108 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_line    0x0001207c      0x2a9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_line    0x00012325      0x452 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_line    0x00012777      0x4ae CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_line    0x00012c25      0x66d CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_line    0x00013292       0x61 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_line    0x000132f3      0x3d2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_line    0x000136c5      0x3c3 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_line    0x00013a88      0x195 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_line    0x00013c1d       0x94 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_line    0x00013cb1      0x20b CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+ .debug_line    0x00013ebc     0x1cea CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .debug_line    0x00015ba6       0xa2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_line    0x00015c48      0x972 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_line    0x000165ba     0x15cf CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_line    0x00017b89      0x5aa CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+ .debug_line    0x00018133     0x1442 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .debug_line    0x00019575      0x431 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ .debug_line    0x000199a6      0x679 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+ .debug_line    0x0001a01f      0xf45 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+ .debug_line    0x0001af64     0x2002 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .debug_line    0x0001cf66      0xdca CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ .debug_line    0x0001dd30     0x299c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .debug_line    0x000206cc      0x6c1 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+ .debug_line    0x00020d8d     0x114c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+ .debug_line    0x00021ed9      0xb5d CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+ .debug_line    0x00022a36     0x12e5 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+ .debug_line    0x00023d1b     0x1a97 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 
-.debug_str      0x00000000     0x8ea2
- .debug_str     0x00000000     0x8ea2 CMakeFiles/key_latency.dir/main.c.obj
-                                0x9b4 (size before relaxing)
- .debug_str     0x00008ea2      0xcec CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_str     0x00008ea2      0x21d CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
- .debug_str     0x00008ea2      0x224 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_str     0x00008ea2      0x3a7 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
- .debug_str     0x00008ea2      0x350 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- .debug_str     0x00008ea2      0x263 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_str     0x00008ea2      0xadf CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
- .debug_str     0x00008ea2      0x22f CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
- .debug_str     0x00008ea2      0x80a CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
- .debug_str     0x00008ea2      0x2ef CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
- .debug_str     0x00008ea2     0x1206 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
- .debug_str     0x00008ea2      0xa52 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- .debug_str     0x00008ea2      0xa35 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_str     0x00008ea2      0x482 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
- .debug_str     0x00008ea2      0x3e6 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
- .debug_str     0x00008ea2      0x2b1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_str     0x00008ea2      0x376 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_str     0x00008ea2      0x266 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_str     0x00008ea2      0x2b6 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_str     0x00008ea2      0x7e9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_str     0x00008ea2      0x4be CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_str     0x00008ea2       0xb9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_str     0x00008ea2       0xbc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
- .debug_str     0x00008ea2       0xbe CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
- .debug_str     0x00008ea2      0x2df CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_str     0x00008ea2       0xc4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
- .debug_str     0x00008ea2       0xc2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
- .debug_str     0x00008ea2       0xbc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
- .debug_str     0x00008ea2      0x2c4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_str     0x00008ea2       0xc2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
- .debug_str     0x00008ea2       0xb9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_str     0x00008ea2      0x425 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
- .debug_str     0x00008ea2      0x508 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .debug_str     0x00008ea2       0xad CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
- .debug_str     0x00008ea2      0x79f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_str     0x00008ea2      0xb46 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_str     0x00008ea2      0xe66 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
- .debug_str     0x00008ea2      0xf72 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .debug_str     0x00008ea2     0x1008 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- .debug_str     0x00008ea2      0x295 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
- .debug_str     0x00008ea2      0x7ce CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
- .debug_str     0x00008ea2     0x1258 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .debug_str     0x00008ea2      0xa5c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- .debug_str     0x00008ea2     0x1b9c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .debug_str     0x00008ea2      0x700 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
- .debug_str     0x00008ea2     0x178f CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
- .debug_str     0x00008ea2      0xe65 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
- .debug_str     0x00008ea2      0xe41 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
- .debug_str     0x00008ea2      0x64d CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+.debug_str      0x00000000     0x8f3e
+ .debug_str     0x00000000     0x8f3e CMakeFiles/key_latency.dir/main.c.obj
+                                0xa72 (size before relaxing)
+ .debug_str     0x00008f3e      0xcec CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_str     0x00008f3e      0x21d CMakeFiles/key_latency.dir/pico-sdk/src/rp2040/pico_platform/platform.c.obj
+ .debug_str     0x00008f3e      0x224 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_str     0x00008f3e      0x3a7 CMakeFiles/key_latency.dir/pico-sdk/src/common/hardware_claim/claim.c.obj
+ .debug_str     0x00008f3e      0x350 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_str     0x00008f3e      0x263 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_str     0x00008f3e      0xadf CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_str     0x00008f3e      0x22f CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/lock_core.c.obj
+ .debug_str     0x00008f3e      0x80a CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/mutex.c.obj
+ .debug_str     0x00008f3e      0x2ef CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_sync/critical_section.c.obj
+ .debug_str     0x00008f3e     0x1206 CMakeFiles/key_latency.dir/pico-sdk/src/common/pico_time/time.c.obj
+ .debug_str     0x00008f3e      0xa52 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_str     0x00008f3e      0xa35 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_str     0x00008f3e      0x482 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_str     0x00008f3e      0x3e6 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+ .debug_str     0x00008f3e      0x2b1 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_str     0x00008f3e      0x376 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_str     0x00008f3e      0x266 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_str     0x00008f3e      0x2b6 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_str     0x00008f3e      0x7e9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_str     0x00008f3e      0x4be CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_str     0x00008f3e       0xb9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_str     0x00008f3e       0xbc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_str     0x00008f3e       0xbe CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_str     0x00008f3e      0x2df CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_str     0x00008f3e       0xc4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_str     0x00008f3e       0xc2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_str     0x00008f3e       0xbc CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_str     0x00008f3e      0x2c4 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_str     0x00008f3e       0xc2 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_str     0x00008f3e       0xb9 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_str     0x00008f3e      0x425 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+ .debug_str     0x00008f3e      0x508 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .debug_str     0x00008f3e       0xad CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_str     0x00008f3e      0x79f CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_str     0x00008f3e      0xb46 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_str     0x00008f3e      0xe66 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+ .debug_str     0x00008f3e      0xf72 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ .debug_str     0x00008f3e     0x1008 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ .debug_str     0x00008f3e      0x295 CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/pico_unique_id/unique_id.c.obj
+ .debug_str     0x00008f3e      0x7ce CMakeFiles/key_latency.dir/pico-sdk/src/rp2_common/hardware_flash/flash.c.obj
+ .debug_str     0x00008f3e     0x1258 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .debug_str     0x00008f3e      0xa5c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ .debug_str     0x00008f3e     0x1b9c CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .debug_str     0x00008f3e      0x700 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+ .debug_str     0x00008f3e     0x178f CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+ .debug_str     0x00008f3e      0xe65 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/class/vendor/vendor_device.c.obj
+ .debug_str     0x00008f3e      0xe41 CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/tusb.c.obj
+ .debug_str     0x00008f3e      0x64d CMakeFiles/key_latency.dir/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
 
 .debug_frame    0x00000000     0x2eec
  .debug_frame   0x00000000       0x3c CMakeFiles/key_latency.dir/main.c.obj
