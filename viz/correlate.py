@@ -165,42 +165,96 @@ def correlate(serial: pd.DataFrame, keylog: pd.DataFrame) -> pd.DataFrame:
 # ---------------------------------------------------------------------------
 
 def apply_clock_offset(df: pd.DataFrame) -> tuple[pd.DataFrame, float]:
+    """
+    Three-step correction pipeline:
+
+    Step 1 — Epoch gate
+        The Pico can silently reset when the USB serial port is closed and
+        reopened (Windows re-enumeration). This resets time_us_64() to zero,
+        producing a second population of t_latency_ns values far from the
+        first. We detect and drop these rows using an IQR-based gate before
+        any further processing.
+
+    Step 2 — Linear drift correction
+        The Pico crystal and the Windows QPC hardware clock run at slightly
+        different frequencies. Over a 1000-cycle run (~20 minutes) the two
+        clocks diverge by a measurable and consistent amount — visible as a
+        linear downward slope in the scatter stability plot.
+        We fit a linear regression to the raw latency values over sequence
+        number, extract the slope (drift rate in ns per press), and subtract
+        the linear trend from every row. What remains is the true OS jitter
+        centred around a stable baseline.
+        The drift rate in µs per second is reported so it can be stated in
+        the thesis as a measured characteristic of the hardware setup.
+
+    Step 3 — Fixed offset subtraction
+        After drift correction the values are still offset by the clock origin
+        difference (Pico boots at t=0µs, Windows QPC starts at system boot).
+        We subtract the median of the first complete cycle to centre the
+        corrected values around zero.
+    """
     raw = df["t_latency_ns"].astype(np.int64)
 
-    # Step 1: find the dominant population using IQR on raw values
+    # ---- Step 1: epoch gate -------------------------------------------------
     q1  = raw.quantile(0.25)
     q3  = raw.quantile(0.75)
     iqr = q3 - q1
-    # Wide gate: keep anything within 50x IQR of the median
-    # This removes values from a completely different clock epoch
-    # while keeping all legitimate OS jitter (typically < 50ms = 50e6 ns)
-    med        = raw.median()
-    gate_width = max(iqr * 50, 500_000_000)   # at least 500ms gate
-    lo, hi     = med - gate_width, med + gate_width
+    med = raw.median()
+    gate_width = max(iqr * 50, 500_000_000)   # minimum 500ms gate
+    lo, hi = med - gate_width, med + gate_width
 
     out_of_epoch = (raw < lo) | (raw > hi)
     n_bad = int(out_of_epoch.sum())
     if n_bad > 0:
-        print(f"[WARN] {n_bad} rows appear to be from a different clock epoch "
-              f"(raw latency outside ±{gate_width/1e6:.0f} ms of median). "
-              f"These rows will be dropped. "
-              f"Check that serial and key loggers ran simultaneously.")
-        df = df[~out_of_epoch].copy()
+        print(f"[WARN] {n_bad} rows from a different clock epoch dropped.")
+        print(f"       Likely cause: Pico USB reset mid-run (see generator fix).")
+        df  = df[~out_of_epoch].copy()
         raw = df["t_latency_ns"].astype(np.int64)
 
-    # Step 2: compute offset from first complete cycle of the clean data
-    first_cycle_id = df["cycle"].min()
-    first_cycle    = df[df["cycle"] == first_cycle_id]
-    offset_ns      = float(first_cycle["t_latency_ns"].median())
+    # ---- Step 2: linear drift correction ------------------------------------
+    # Fit: t_latency_ns = slope * seq + intercept
+    # slope is the drift rate in ns per press
+    seq_vals = df["seq"].astype(np.float64).values
+    lat_vals = raw.astype(np.float64).values
+
+    # Use numpy polyfit (degree 1 = linear)
+    slope, intercept = np.polyfit(seq_vals, lat_vals, 1)
+    trend_ns = slope * seq_vals + intercept
+
+    drift_ns_per_press   = slope
+    total_presses        = seq_vals[-1] - seq_vals[0]
+    total_drift_ms       = (slope * total_presses) / 1_000_000.0
+
+    # Compute drift rate in µs per second for thesis reporting
+    # Each press takes PRESS_DURATION_MS + PRESS_INTERVAL_MS = 100ms
+    # So 1 press = 0.1 seconds
+    drift_us_per_sec = (slope / 1000.0) / 0.1   # ns/press -> µs/press -> µs/sec
+
+    print(f"[INFO] Clock drift detected:")
+    print(f"       Slope          : {slope/1000:.4f} µs per press")
+    print(f"       Drift rate     : {drift_us_per_sec:.3f} µs per second")
+    print(f"       Total drift    : {total_drift_ms:.2f} ms over {int(total_presses)} presses")
+    print(f"       Equivalent PPM : {drift_us_per_sec:.1f} ppm  (typical crystal: ±50 ppm)")
 
     df = df.copy()
-    df["t_latency_ns_raw"] = df["t_latency_ns"]
-    df["t_latency_ns"]     = df["t_latency_ns"].astype(np.int64) - int(offset_ns)
-    df["t_latency_ms"]     = df["t_latency_ns"] / 1_000_000.0
+    df["t_latency_ns_raw"]   = df["t_latency_ns"]
+    df["t_latency_ns_drift"] = (raw.astype(np.float64) - trend_ns).astype(np.int64)
 
-    print(f"[INFO] Clock offset (median of first cycle): "
-          f"{offset_ns/1e6:.3f} ms  —  subtracted from all latency values")
-    print(f"[INFO] Latency range after correction: "
+    # ---- Step 3: fixed offset subtraction -----------------------------------
+    first_cycle_id = df["cycle"].min()
+    first_cycle    = df[df["cycle"] == first_cycle_id]
+    offset_ns      = float(
+        (first_cycle["t_latency_ns"].astype(np.float64).values -
+         (slope * first_cycle["seq"].astype(np.float64).values + intercept)
+        ).mean()
+    )
+
+    df["t_latency_ns"] = df["t_latency_ns_drift"] - int(offset_ns)
+    df["t_latency_ms"] = df["t_latency_ns"] / 1_000_000.0
+
+    print(f"[INFO] Fixed offset (mean of first cycle after drift removal): "
+          f"{offset_ns/1e6:.3f} ms")
+    print(f"[INFO] Latency range after full correction: "
           f"{df['t_latency_ms'].min():.2f} ms  to  "
           f"{df['t_latency_ms'].max():.2f} ms")
     return df, offset_ns
