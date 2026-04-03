@@ -3,20 +3,20 @@ correlate.py — Iteration 3 correlation and visualisation engine
 ===============================================================
 
 Usage:
-    python correlate.py --serial serial_YYYYMMDD_HHMMSS.csv \
-                        --keylog keyboard_YYYYMMDD_HHMMSS_filtered.csv \
-                        --raw    keyboard_YYYYMMDD_HHMMSS_raw.csv
+    python correlate.py --serial  serial_YYYYMMDD_HHMMSS.csv \
+                        --keylog  keyboard_YYYYMMDD_HHMMSS_filtered.csv \
+                        --raw     keyboard_YYYYMMDD_HHMMSS_raw.csv
 
 Outputs written to current directory:
-    correlated.csv       — one row per matched keypress with t_latency_ms
-    stats.csv            — per-key descriptive statistics
-    outliers.csv         — rows removed by 3-sigma rule (if any)
-    crossval.csv         — cross-validation delta per press
-    hist_latency.png     — latency distribution histogram (all keys overlaid)
-    boxplot_per_key.png  — box plot per letter
-    scatter_stability.png— latency over time (drift / stability check)
-    overlay_pattern.png  — keystroke dynamics overlay (all cycles stacked)
-    crossval.png         — actual Pico T0 vs pattern-expected T0
+    correlated.csv        — one row per matched keypress with t_latency_ms
+    stats.csv             — per-key descriptive statistics
+    outliers.csv          — rows removed by sigma rule
+    crossval.csv          — cross-validation delta per press
+    hist_latency.png      — latency distribution histogram
+    boxplot_per_key.png   — box plot per letter
+    scatter_stability.png — latency over time
+    overlay_pattern.png   — keystroke dynamics overlay (horizontal)
+    crossval.png          — actual Pico T0 vs expected T0
 """
 
 import argparse
@@ -28,12 +28,11 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 
 # ---------------------------------------------------------------------------
-# Pattern definition — must match generator
+# Pattern
 # ---------------------------------------------------------------------------
-PATTERN   = list("FHBURGENLAND")
+PATTERN     = list("FHBURGENLAND")
 PATTERN_LEN = len(PATTERN)
-
-PALETTE = [
+PALETTE     = [
     "#4C72B0", "#DD8452", "#55A868", "#C44E52",
     "#8172B3", "#937860", "#DA8BC3", "#8C8C8C",
     "#CCB974", "#64B5CD", "#4C72B0", "#DD8452",
@@ -46,112 +45,64 @@ FIGURE_DPI = 150
 # ---------------------------------------------------------------------------
 
 def clean_keyname(series: pd.Series) -> pd.Series:
-    """
-    Strip all whitespace and quote characters from keyname values.
-    The filtered CSV stores keynames as "F", "H" etc — pandas read_csv
-    may preserve the surrounding quotes as literal characters depending
-    on the quoting mode used when the C++ logger wrote the file.
-    This function handles all variants: 'F', '"F"', ' F ', ' "F" '.
-    """
-    return (series
-            .astype(str)
-            .str.strip()
-            .str.strip('"')
-            .str.strip("'")
-            .str.strip()
+    return (series.astype(str)
+            .str.strip().str.strip('"').str.strip("'").str.strip()
             .str.upper())
 
 
 def load_serial(path: str) -> pd.DataFrame:
-    """Load serial logger CSV. Comment lines starting with # are skipped."""
-    df = pd.read_csv(
-        path,
-        comment="#",
-        dtype={"seq": int, "cycle": int, "pos": int,
-               "gpio": int, "t0_us": int},
-        keep_default_na=False,
-    )
+    df = pd.read_csv(path, comment="#",
+                     dtype={"seq": int, "cycle": int, "pos": int,
+                            "gpio": int, "t0_us": int},
+                     keep_default_na=False)
     df["char"]  = clean_keyname(df["char"])
     df["t0_ns"] = df["t0_us"].astype(np.int64) * 1000
     return df.sort_values("seq").reset_index(drop=True)
 
 
 def load_keylog(path: str) -> pd.DataFrame:
-    """Load filtered key logger CSV (DOWN events only, debounced)."""
-    df = pd.read_csv(
-        path,
-        dtype={"vkey": int, "scancode": int, "t1_ns": int},
-        keep_default_na=False,
-    )
-    df["keyname"] = clean_keyname(df["keyname"])
-    return df.reset_index(drop=True)
-
-
-def load_raw(path: str) -> pd.DataFrame:
-    """Load raw key logger CSV (all events including UP)."""
     df = pd.read_csv(path, keep_default_na=False)
     df["keyname"] = clean_keyname(df["keyname"])
-    df["edge"]    = df["edge"].str.strip().str.upper()
+    df["t1_ns"]   = df["t1_ns"].astype(np.int64)
     return df.reset_index(drop=True)
 
 # ---------------------------------------------------------------------------
 # Sequence alignment
-#
-# The serial logger and key logger are started independently. The key logger
-# often captures a few events before the serial logger begins — or vice versa.
-# This means the two sequences may be offset by N rows at the start.
-#
-# Strategy: scan the first SEARCH_WINDOW rows of the longer file to find the
-# offset that produces zero mismatches on the first PATTERN_LEN rows.
-# This is a sliding-window search over the start of the longer sequence.
 # ---------------------------------------------------------------------------
-SEARCH_WINDOW = 24   # search up to 2 full pattern cycles worth of offset
-
+SEARCH_WINDOW = 24
 
 def align_sequences(serial: pd.DataFrame,
                     keylog: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """
-    Find and remove any leading rows in keylog or serial that cause the
-    two sequences to be out of sync. Returns trimmed (serial, keylog).
-    """
     s_chars = serial["char"].tolist()
     k_chars = keylog["keyname"].tolist()
 
-    # Try trimming the start of keylog (most common case: keylog started first)
-    best_offset = 0
-    best_score  = -1
+    best_offset, best_score = 0, -1
     for offset in range(SEARCH_WINDOW + 1):
         n = min(len(s_chars), len(k_chars) - offset)
         if n <= 0:
             break
-        matches = sum(s == k for s, k in
-                      zip(s_chars[:n], k_chars[offset:offset + n]))
-        if matches > best_score:
-            best_score  = matches
-            best_offset = offset
+        score = sum(s == k for s, k in
+                    zip(s_chars[:n], k_chars[offset:offset + n]))
+        if score > best_score:
+            best_score, best_offset = score, offset
 
     if best_offset > 0:
-        print(f"[ALIGN] Trimmed {best_offset} leading row(s) from keylog "
-              f"(keylog started before serial logger)")
+        print(f"[ALIGN] Trimmed {best_offset} leading row(s) from keylog")
         keylog = keylog.iloc[best_offset:].reset_index(drop=True)
         return serial, keylog
 
-    # Try trimming the start of serial (less common: serial started first)
-    best_offset = 0
-    best_score  = -1
+    best_offset, best_score = 0, -1
     for offset in range(1, SEARCH_WINDOW + 1):
         n = min(len(s_chars) - offset, len(k_chars))
         if n <= 0:
             break
-        matches = sum(s == k for s, k in
-                      zip(s_chars[offset:offset + n], k_chars[:n]))
-        if matches > best_score:
-            best_score  = matches
-            best_offset = offset
+        score = sum(s == k for s, k in
+                    zip(s_chars[offset:offset + n], k_chars[:n]))
+        if score > best_score:
+            best_score, best_offset = score, offset
 
     if best_offset > 0:
-        print(f"[ALIGN] Trimmed {best_offset} leading row(s) from serial log "
-              f"(serial logger started before key logger)")
+        print(f"[ALIGN] Trimmed {best_offset} leading row(s) from serial log")
         serial = serial.iloc[best_offset:].reset_index(drop=True)
 
     return serial, keylog
@@ -163,28 +114,27 @@ def align_sequences(serial: pd.DataFrame,
 def correlate(serial: pd.DataFrame, keylog: pd.DataFrame) -> pd.DataFrame:
     n = min(len(serial), len(keylog))
     if len(serial) != len(keylog):
-        print(f"[WARN] Row count mismatch after alignment: "
-              f"serial={len(serial)}, keylog={len(keylog)}. "
-              f"Using first {n} rows.")
+        print(f"[WARN] Row count mismatch: serial={len(serial)}, "
+              f"keylog={len(keylog)}. Using first {n} rows.")
 
     s = serial.iloc[:n].reset_index(drop=True)
     k = keylog.iloc[:n].reset_index(drop=True)
 
     mismatch_mask = s["char"] != k["keyname"]
-    n_mismatch    = int(mismatch_mask.sum())
+    n_miss = int(mismatch_mask.sum())
 
-    if n_mismatch > 0:
-        print(f"[WARN] {n_mismatch} character mismatches after alignment. "
-              f"See correlation_errors.csv")
-        errors = pd.DataFrame({
+    if n_miss > 0:
+        print(f"[WARN] {n_miss} character mismatches. See correlation_errors.csv")
+        pd.DataFrame({
             "row":         mismatch_mask[mismatch_mask].index.tolist(),
-            "serial_seq":  s.loc[mismatch_mask, "seq"].tolist(),
             "serial_char": s.loc[mismatch_mask, "char"].tolist(),
             "keylog_key":  k.loc[mismatch_mask, "keyname"].tolist(),
-        })
-        errors.to_csv("correlation_errors.csv", index=False)
+        }).to_csv("correlation_errors.csv", index=False)
     else:
-        print(f"[OK]  All {n} rows matched cleanly — no character mismatches")
+        print(f"[OK]  All {n} rows matched cleanly")
+
+    t0 = s["t0_ns"].astype(np.int64)
+    t1 = k["t1_ns"].astype(np.int64)
 
     corr = pd.DataFrame({
         "seq":          s["seq"],
@@ -192,47 +142,76 @@ def correlate(serial: pd.DataFrame, keylog: pd.DataFrame) -> pd.DataFrame:
         "pos":          s["pos"],
         "char":         s["char"],
         "gpio":         s["gpio"],
-        "t0_ns":        s["t0_ns"],
-        "t1_ns":        k["t1_ns"].astype(np.int64),
-        "t_latency_ns": k["t1_ns"].astype(np.int64) - s["t0_ns"],
+        "t0_ns":        t0,
+        "t1_ns":        t1,
+        "t_latency_ns": t1 - t0,
         "valid":        ~mismatch_mask,
     })
     corr["t_latency_ms"] = corr["t_latency_ns"] / 1_000_000.0
     return corr
 
 # ---------------------------------------------------------------------------
-# Clock offset correction
+# Clock offset correction + epoch sanity check
+#
+# The Pico t0 and Windows t1 have different clock origins so raw latency is
+# a large number. We subtract the median of the first cycle as a baseline.
+#
+# If the data contains rows from two different recording sessions (e.g. the
+# Windows QPC reset, or the run was stopped and restarted) the raw latency
+# values will form two distinct populations separated by millions of ms.
+# We detect this with an IQR-based gate BEFORE applying the offset so that
+# only the dominant population contributes to the baseline calculation, and
+# rows from the other population are dropped with a clear warning.
 # ---------------------------------------------------------------------------
 
 def apply_clock_offset(df: pd.DataFrame) -> tuple[pd.DataFrame, float]:
-    """
-    The Pico clock origin (us since boot) and the Windows QPC origin
-    (ns since system boot) are completely different. The raw t_latency_ns
-    will be a large value reflecting this difference. We subtract the
-    median latency of the first complete cycle as a fixed baseline offset,
-    leaving only the per-press variation — which is what we are measuring.
-    """
+    raw = df["t_latency_ns"].astype(np.int64)
+
+    # Step 1: find the dominant population using IQR on raw values
+    q1  = raw.quantile(0.25)
+    q3  = raw.quantile(0.75)
+    iqr = q3 - q1
+    # Wide gate: keep anything within 50x IQR of the median
+    # This removes values from a completely different clock epoch
+    # while keeping all legitimate OS jitter (typically < 50ms = 50e6 ns)
+    med        = raw.median()
+    gate_width = max(iqr * 50, 500_000_000)   # at least 500ms gate
+    lo, hi     = med - gate_width, med + gate_width
+
+    out_of_epoch = (raw < lo) | (raw > hi)
+    n_bad = int(out_of_epoch.sum())
+    if n_bad > 0:
+        print(f"[WARN] {n_bad} rows appear to be from a different clock epoch "
+              f"(raw latency outside ±{gate_width/1e6:.0f} ms of median). "
+              f"These rows will be dropped. "
+              f"Check that serial and key loggers ran simultaneously.")
+        df = df[~out_of_epoch].copy()
+        raw = df["t_latency_ns"].astype(np.int64)
+
+    # Step 2: compute offset from first complete cycle of the clean data
     first_cycle_id = df["cycle"].min()
     first_cycle    = df[df["cycle"] == first_cycle_id]
     offset_ns      = float(first_cycle["t_latency_ns"].median())
 
     df = df.copy()
     df["t_latency_ns_raw"] = df["t_latency_ns"]
-    df["t_latency_ns"]     = df["t_latency_ns"] - int(offset_ns)
+    df["t_latency_ns"]     = df["t_latency_ns"].astype(np.int64) - int(offset_ns)
     df["t_latency_ms"]     = df["t_latency_ns"] / 1_000_000.0
 
     print(f"[INFO] Clock offset (median of first cycle): "
           f"{offset_ns/1e6:.3f} ms  —  subtracted from all latency values")
+    print(f"[INFO] Latency range after correction: "
+          f"{df['t_latency_ms'].min():.2f} ms  to  "
+          f"{df['t_latency_ms'].max():.2f} ms")
     return df, offset_ns
 
 # ---------------------------------------------------------------------------
-# Outlier removal
+# Outlier removal — per-key 3-sigma
 # ---------------------------------------------------------------------------
 
 def remove_outliers(df: pd.DataFrame,
-                    col: str   = "t_latency_ms",
+                    col: str = "t_latency_ms",
                     sigma: float = 3.0) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Per-key 3-sigma outlier removal."""
     clean_parts, outlier_parts = [], []
     for char in PATTERN:
         grp = df[df["char"] == char]
@@ -247,21 +226,17 @@ def remove_outliers(df: pd.DataFrame,
         clean_parts.append(grp[mask])
         outlier_parts.append(grp[~mask])
 
-    clean = (pd.concat(clean_parts)
-               .sort_values("seq")
+    clean = (pd.concat(clean_parts).sort_values("seq")
                .reset_index(drop=True))
-
     if outlier_parts:
-        outliers = (pd.concat(outlier_parts)
-                      .sort_values("seq")
+        outliers = (pd.concat(outlier_parts).sort_values("seq")
                       .reset_index(drop=True))
         if len(outliers) > 0:
-            print(f"[INFO] {len(outliers)} outlier(s) removed (>{sigma}σ per key) "
-                  f"— see outliers.csv")
+            print(f"[INFO] {len(outliers)} outlier(s) removed (>{sigma}σ). "
+                  f"See outliers.csv")
             outliers.to_csv("outliers.csv", index=False)
     else:
         outliers = pd.DataFrame()
-
     return clean, outliers
 
 # ---------------------------------------------------------------------------
@@ -277,13 +252,13 @@ def compute_stats(df: pd.DataFrame) -> pd.DataFrame:
         rows.append({
             "char":      char,
             "count":     len(grp),
-            "mean_ms":   round(grp.mean(),          4),
-            "median_ms": round(grp.median(),         4),
-            "std_ms":    round(grp.std(),            4),
-            "min_ms":    round(grp.min(),            4),
-            "max_ms":    round(grp.max(),            4),
-            "p5_ms":     round(grp.quantile(0.05),  4),
-            "p95_ms":    round(grp.quantile(0.95),  4),
+            "mean_ms":   round(grp.mean(),         4),
+            "median_ms": round(grp.median(),        4),
+            "std_ms":    round(grp.std(),           4),
+            "min_ms":    round(grp.min(),           4),
+            "max_ms":    round(grp.max(),           4),
+            "p5_ms":     round(grp.quantile(0.05), 4),
+            "p95_ms":    round(grp.quantile(0.95), 4),
         })
     return pd.DataFrame(rows)
 
@@ -294,11 +269,6 @@ def compute_stats(df: pd.DataFrame) -> pd.DataFrame:
 def crossvalidate(serial: pd.DataFrame,
                   press_ms: int = 30,
                   interval_ms: int = 70) -> pd.DataFrame:
-    """
-    For each press, compute expected T0 from pattern schedule and compare
-    to actual Pico T0. Delta near zero and stable = generator is precise.
-    Growing delta = clock drift.
-    """
     period_us = (press_ms + interval_ms) * 1000
     rows = []
     for cycle_id, grp in serial.groupby("cycle"):
@@ -308,8 +278,7 @@ def crossvalidate(serial: pd.DataFrame,
             continue
         t0_start = int(starts[0])
         for _, row in grp.iterrows():
-            expected  = t0_start + int(row["pos"]) * period_us
-            delta_us  = int(row["t0_us"]) - expected
+            expected = t0_start + int(row["pos"]) * period_us
             rows.append({
                 "seq":            int(row["seq"]),
                 "cycle":          cycle_id,
@@ -317,21 +286,22 @@ def crossvalidate(serial: pd.DataFrame,
                 "char":           row["char"],
                 "t0_us":          int(row["t0_us"]),
                 "t0_expected_us": expected,
-                "delta_us":       delta_us,
+                "delta_us":       int(row["t0_us"]) - expected,
             })
     return pd.DataFrame(rows)
 
 # ---------------------------------------------------------------------------
-# Plots
+# Plot 1 — Histogram
+# Clamp x-axis to ±50ms to prevent a single outlier from collapsing the plot
 # ---------------------------------------------------------------------------
 
 def plot_histogram(df: pd.DataFrame, out: str = "hist_latency.png") -> None:
-    fig, ax = plt.subplots(figsize=(10, 5))
-    all_lat = df["t_latency_ms"]
-    xmin = max(0, all_lat.min() - 2)
-    xmax = all_lat.max() + 2
+    lat  = df["t_latency_ms"]
+    xmin = max(-20, lat.quantile(0.001) - 1)
+    xmax = min(50,  lat.quantile(0.999) + 1)
     bins = np.arange(xmin, xmax + 0.5, 0.5)
 
+    fig, ax = plt.subplots(figsize=(11, 5))
     for char in PATTERN:
         grp = df[df["char"] == char]["t_latency_ms"]
         if len(grp) == 0:
@@ -351,10 +321,14 @@ def plot_histogram(df: pd.DataFrame, out: str = "hist_latency.png") -> None:
     plt.close(fig)
     print(f"[OUT] {out}")
 
+# ---------------------------------------------------------------------------
+# Plot 2 — Box plot per key
+# Force y-axis to ±50ms so one outlier cannot collapse every box to a line
+# ---------------------------------------------------------------------------
 
 def plot_boxplot_per_key(df: pd.DataFrame,
                          out: str = "boxplot_per_key.png") -> None:
-    fig, ax = plt.subplots(figsize=(12, 5))
+    fig, ax = plt.subplots(figsize=(13, 5))
     data   = [df[df["char"] == c]["t_latency_ms"].values for c in PATTERN]
     colors = [CHAR_COLOR[c] for c in PATTERN]
 
@@ -362,11 +336,17 @@ def plot_boxplot_per_key(df: pd.DataFrame,
                     medianprops=dict(color="black", linewidth=1.5),
                     whiskerprops=dict(linewidth=1),
                     capprops=dict(linewidth=1),
-                    flierprops=dict(marker="o", markersize=3,
-                                   alpha=0.4, linestyle="none"))
+                    flierprops=dict(marker="o", markersize=2,
+                                   alpha=0.3, linestyle="none"))
     for patch, color in zip(bp["boxes"], colors):
         patch.set_facecolor(color)
         patch.set_alpha(0.7)
+
+    # Compute a sensible y range from the actual IQR across all keys
+    all_vals = df["t_latency_ms"]
+    y_lo = max(-50, all_vals.quantile(0.005) - 2)
+    y_hi = min(50,  all_vals.quantile(0.995) + 2)
+    ax.set_ylim(y_lo, y_hi)
 
     ax.set_xticks(range(1, len(PATTERN) + 1))
     ax.set_xticklabels(PATTERN)
@@ -379,15 +359,32 @@ def plot_boxplot_per_key(df: pd.DataFrame,
     plt.close(fig)
     print(f"[OUT] {out}")
 
+# ---------------------------------------------------------------------------
+# Plot 3 — Scatter stability
+# Subsample to max 5000 points to keep the plot readable at 12 000 events
+# Force y-axis to ±50ms
+# ---------------------------------------------------------------------------
 
 def plot_scatter_stability(df: pd.DataFrame,
                            out: str = "scatter_stability.png") -> None:
-    fig, ax = plt.subplots(figsize=(12, 4))
-    for char in PATTERN:
-        grp = df[df["char"] == char]
-        ax.scatter(grp["seq"], grp["t_latency_ms"],
-                   s=4, alpha=0.4, color=CHAR_COLOR[char], label=char)
+    plot_df = df
+    if len(df) > 5000:
+        plot_df = df.sample(n=5000, random_state=42).sort_values("seq")
+        print(f"[INFO] Scatter plot: subsampled to 5000 of {len(df)} points "
+              f"for readability")
 
+    all_vals = df["t_latency_ms"]
+    y_lo = max(-50, all_vals.quantile(0.005) - 2)
+    y_hi = min(50,  all_vals.quantile(0.995) + 2)
+
+    fig, ax = plt.subplots(figsize=(13, 4))
+    for char in PATTERN:
+        grp = plot_df[plot_df["char"] == char]
+        ax.scatter(grp["seq"], grp["t_latency_ms"],
+                   s=3, alpha=0.35, color=CHAR_COLOR[char], label=char,
+                   linewidths=0)
+
+    ax.set_ylim(y_lo, y_hi)
     ax.set_xlabel("Sequence number", fontsize=12)
     ax.set_ylabel("Latency (ms)", fontsize=12)
     ax.set_title("Latency stability over run", fontsize=13)
@@ -398,61 +395,100 @@ def plot_scatter_stability(df: pd.DataFrame,
     plt.close(fig)
     print(f"[OUT] {out}")
 
+# ---------------------------------------------------------------------------
+# Plot 4 — Keystroke dynamics overlay (redesigned for large datasets)
+#
+# Instead of one row per cycle (which becomes an unreadably tall image),
+# this version plots one COLUMN per key position. For each key, all cycle
+# arrival times are shown as a horizontal strip of dots, offset-corrected
+# so the expected arrival sits at x=0. This makes the jitter per key
+# immediately visible as horizontal spread, and scales perfectly to
+# 1000 cycles because each key column has a fixed height.
+# ---------------------------------------------------------------------------
 
 def plot_pattern_overlay(df: pd.DataFrame,
                          press_ms: int = 30,
                          interval_ms: int = 70,
-                         max_cycles: int = 200,
+                         max_cycles: int = 1000,
                          out: str = "overlay_pattern.png") -> None:
     period_ms = press_ms + interval_ms
-    cycles = sorted(df["cycle"].unique())
-    if len(cycles) > max_cycles:
-        cycles = cycles[:max_cycles]
 
-    fig, ax = plt.subplots(figsize=(14, max(4, len(cycles) * 0.12)))
-
-    for cy_idx, cycle_id in enumerate(cycles):
-        grp = df[df["cycle"] == cycle_id].sort_values("pos")
+    # Compute per-cycle, per-key latency relative to expected arrival
+    # Expected arrival of key at position p = p * period_ms (ms into cycle)
+    # Actual arrival = t1_ns relative to first key of same cycle, in ms
+    rows = []
+    for cycle_id, grp in df.groupby("cycle"):
+        if cycle_id >= max_cycles:
+            break
+        grp = grp.sort_values("pos")
         if len(grp) == 0:
             continue
         first_t1 = grp["t1_ns"].min()
         for _, row in grp.iterrows():
-            x_actual = (row["t1_ns"] - first_t1) / 1_000_000.0
-            ax.scatter(x_actual, cy_idx, s=6,
-                       color=CHAR_COLOR.get(row["char"], "#888888"),
-                       alpha=0.5, linewidths=0)
+            actual_ms   = (row["t1_ns"] - first_t1) / 1_000_000.0
+            expected_ms = row["pos"] * period_ms
+            jitter_ms   = actual_ms - expected_ms
+            rows.append({
+                "cycle": cycle_id,
+                "pos":   row["pos"],
+                "char":  row["char"],
+                "jitter_ms": jitter_ms,
+            })
 
+    if not rows:
+        print(f"[WARN] No data for overlay plot")
+        return
+
+    ov = pd.DataFrame(rows)
+
+    fig, ax = plt.subplots(figsize=(14, 5))
+
+    # Plot each key as a horizontal strip of dots
     for pos, char in enumerate(PATTERN):
-        x_exp = pos * period_ms
-        ax.axvline(x_exp, color=CHAR_COLOR[char],
-                   linewidth=0.5, alpha=0.3, linestyle="--")
-        ax.text(x_exp, -1.5, char, ha="center", va="top",
-                fontsize=7, color=CHAR_COLOR[char])
+        grp = ov[ov["pos"] == pos]["jitter_ms"]
+        if len(grp) == 0:
+            continue
+        # y position = pattern position index
+        ax.scatter(grp, [pos] * len(grp),
+                   s=4, alpha=0.25, color=CHAR_COLOR[char],
+                   linewidths=0)
+        # Mark the median jitter for this key
+        med = grp.median()
+        ax.plot(med, pos, marker="|", color=CHAR_COLOR[char],
+                markersize=12, markeredgewidth=2)
 
-    ax.set_xlabel("Time within pattern cycle (ms)", fontsize=11)
-    ax.set_ylabel("Cycle index", fontsize=11)
-    ax.set_title("Keystroke dynamics overlay — OS arrival times per cycle",
-                 fontsize=12)
-    ax.set_xlim(-10, len(PATTERN) * period_ms + 10)
-    ax.invert_yaxis()
-    ax.grid(axis="x", alpha=0.15)
+    ax.axvline(0, color="black", linewidth=0.8, linestyle="--", alpha=0.5)
+    ax.set_yticks(range(len(PATTERN)))
+    ax.set_yticklabels(PATTERN, fontsize=10)
+    ax.set_xlabel("Jitter relative to expected arrival (ms)", fontsize=12)
+    ax.set_title("Keystroke dynamics overlay — per-key OS jitter across all cycles",
+                 fontsize=13)
+
+    # Clamp x-axis to ±20ms so structure is visible
+    jitter_range = ov["jitter_ms"]
+    x_lo = max(-20, jitter_range.quantile(0.005) - 1)
+    x_hi = min(20,  jitter_range.quantile(0.995) + 1)
+    ax.set_xlim(x_lo, x_hi)
+    ax.grid(axis="x", alpha=0.2)
     fig.tight_layout()
     fig.savefig(out, dpi=FIGURE_DPI)
     plt.close(fig)
     print(f"[OUT] {out}")
 
+# ---------------------------------------------------------------------------
+# Plot 5 — Cross-validation
+# ---------------------------------------------------------------------------
 
-def plot_crossval(cv: pd.DataFrame,
-                  out: str = "crossval.png") -> None:
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 6), sharex=True)
+def plot_crossval(cv: pd.DataFrame, out: str = "crossval.png") -> None:
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(13, 6), sharex=True)
 
     for char in PATTERN:
         grp = cv[cv["char"] == char]
         if len(grp) == 0:
             continue
         ax1.scatter(grp["seq"], grp["delta_us"],
-                    s=4, alpha=0.5,
-                    color=CHAR_COLOR[char], label=char)
+                    s=3, alpha=0.4, color=CHAR_COLOR[char],
+                    label=char, linewidths=0)
 
     ax1.axhline(0, color="black", linewidth=0.8, linestyle="--")
     ax1.set_ylabel("T0 delta (µs)\nactual − expected", fontsize=10)
@@ -461,12 +497,11 @@ def plot_crossval(cv: pd.DataFrame,
     ax1.legend(title="Key", ncol=4, fontsize=7, markerscale=2)
     ax1.grid(alpha=0.2)
 
-    cv_sorted = cv.sort_values("seq")
-    rolling   = (cv_sorted["delta_us"]
-                 .abs()
-                 .rolling(window=12, center=True, min_periods=1)
-                 .mean())
-    ax2.plot(cv_sorted["seq"], rolling, color="#4C72B0", linewidth=1)
+    cv_s    = cv.sort_values("seq")
+    rolling = (cv_s["delta_us"].abs()
+                .rolling(window=12, center=True, min_periods=1)
+                .mean())
+    ax2.plot(cv_s["seq"], rolling, color="#4C72B0", linewidth=0.8)
     ax2.set_xlabel("Sequence number", fontsize=10)
     ax2.set_ylabel("Rolling |delta| (µs)\n12-key window", fontsize=10)
     ax2.grid(alpha=0.2)
@@ -483,88 +518,67 @@ def plot_crossval(cv: pd.DataFrame,
 def main() -> None:
     parser = argparse.ArgumentParser(
         description="Correlate generator serial log with OS key logger output.")
-    parser.add_argument("--serial",  required=True,
-                        help="Serial logger CSV")
-    parser.add_argument("--keylog",  required=True,
-                        help="Filtered key logger CSV (*_filtered.csv)")
-    parser.add_argument("--raw",     required=False, default=None,
-                        help="Raw key logger CSV (*_raw.csv) — optional")
-    parser.add_argument("--press-ms",    type=int, default=30)
-    parser.add_argument("--interval-ms", type=int, default=70)
-    parser.add_argument("--sigma",       type=float, default=3.0)
-    parser.add_argument("--max-overlay-cycles", type=int, default=200)
+    parser.add_argument("--serial",  required=True)
+    parser.add_argument("--keylog",  required=True)
+    parser.add_argument("--raw",     required=False, default=None)
+    parser.add_argument("--press-ms",            type=int,   default=30)
+    parser.add_argument("--interval-ms",         type=int,   default=70)
+    parser.add_argument("--sigma",               type=float, default=3.0)
+    parser.add_argument("--max-overlay-cycles",  type=int,   default=1000)
     args = parser.parse_args()
 
-    # ---- Load ---------------------------------------------------------------
-    print(f"\n[IN]  Loading serial log  : {args.serial}")
+    print(f"\n[IN]  Serial log  : {args.serial}")
     serial = load_serial(args.serial)
-    print(f"      {len(serial)} generator events loaded")
-    print(f"      First char: '{serial['char'].iloc[0]}'  "
-          f"Last char: '{serial['char'].iloc[-1]}'")
+    print(f"      {len(serial)} generator events  "
+          f"| first: '{serial['char'].iloc[0]}'  "
+          f"last: '{serial['char'].iloc[-1]}'")
 
-    print(f"[IN]  Loading key log     : {args.keylog}")
+    print(f"[IN]  Key log     : {args.keylog}")
     keylog = load_keylog(args.keylog)
-    print(f"      {len(keylog)} OS key events loaded")
-    print(f"      First key: '{keylog['keyname'].iloc[0]}'  "
-          f"Last key: '{keylog['keyname'].iloc[-1]}'")
+    print(f"      {len(keylog)} OS key events  "
+          f"| first: '{keylog['keyname'].iloc[0]}'  "
+          f"last: '{keylog['keyname'].iloc[-1]}'")
 
-    # ---- Align sequences ----------------------------------------------------
     print("[...] Aligning sequences...")
     serial, keylog = align_sequences(serial, keylog)
     print(f"      After alignment: serial={len(serial)}, keylog={len(keylog)}")
 
-    # ---- Correlate ----------------------------------------------------------
     print("[...] Correlating...")
-    corr = correlate(serial, keylog)
+    corr  = correlate(serial, keylog)
     valid = corr[corr["valid"]].copy()
-    print(f"      {len(valid)} / {len(corr)} events correlated successfully")
+    print(f"      {len(valid)} / {len(corr)} events valid after character check")
 
     if len(valid) == 0:
-        print("\n[ERROR] No valid correlated events. Possible causes:")
-        print("  1. The keyname column still contains unexpected characters.")
-        print("     Check correlation_errors.csv — compare serial_char vs keylog_key.")
-        print("  2. The two logs are from different runs.")
+        print("\n[ERROR] No valid events. Check correlation_errors.csv")
         return
 
-    # ---- Clock offset -------------------------------------------------------
+    print("[...] Applying clock offset correction...")
     valid, offset_ns = apply_clock_offset(valid)
 
-    negative = valid[valid["t_latency_ms"] < 0]
-    if len(negative) > 0:
-        print(f"[WARN] {len(negative)} negative latency values after offset "
-              f"correction — this is expected for events below the baseline.")
-
-    # ---- Outlier removal ----------------------------------------------------
+    print("[...] Removing outliers...")
     clean, _ = remove_outliers(valid, sigma=args.sigma)
-    print(f"      {len(clean)} clean events after outlier removal")
+    print(f"      {len(clean)} clean events remain")
 
-    # ---- Save correlated CSV ------------------------------------------------
     clean.to_csv("correlated.csv", index=False)
     print("[OUT] correlated.csv")
 
-    # ---- Statistics ---------------------------------------------------------
     stats = compute_stats(clean)
     stats.to_csv("stats.csv", index=False)
     print("[OUT] stats.csv")
     print("\n--- Per-key latency statistics (ms) ---")
     print(stats.to_string(index=False))
-    print()
 
-    # ---- Cross-validation ---------------------------------------------------
-    print("[...] Running cross-validation...")
+    print("\n[...] Cross-validation...")
     cv = crossvalidate(serial, args.press_ms, args.interval_ms)
     cv.to_csv("crossval.csv", index=False)
-    max_delta  = cv["delta_us"].abs().max()
-    mean_delta = cv["delta_us"].abs().mean()
-    print(f"      Max |delta|: {max_delta:.1f} µs   "
-          f"Mean |delta|: {mean_delta:.2f} µs")
+    print(f"      Max |delta|: {cv['delta_us'].abs().max():.1f} µs  "
+          f"Mean |delta|: {cv['delta_us'].abs().mean():.2f} µs")
     first_d = cv.sort_values("seq").iloc[:12]["delta_us"].mean()
     last_d  = cv.sort_values("seq").iloc[-12:]["delta_us"].mean()
-    print(f"      Drift check — first 12: {first_d:.1f} µs  "
-          f"last 12: {last_d:.1f} µs  "
-          f"net: {last_d - first_d:.1f} µs")
+    print(f"      Drift: first 12 avg {first_d:.1f} µs  "
+          f"→  last 12 avg {last_d:.1f} µs  "
+          f"(net {last_d - first_d:.1f} µs)")
 
-    # ---- Plots --------------------------------------------------------------
     print("\n[...] Generating plots...")
     plot_histogram(clean)
     plot_boxplot_per_key(clean)
@@ -573,7 +587,7 @@ def main() -> None:
                          args.max_overlay_cycles)
     plot_crossval(cv)
 
-    print("\n[DONE] All outputs written to current directory.")
+    print("\n[DONE]")
 
 
 if __name__ == "__main__":
