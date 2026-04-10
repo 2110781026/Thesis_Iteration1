@@ -38,7 +38,7 @@
 // COM port the Raspberry Pi Pico CDC enumerates on.
 // Check Device Manager after connecting the Pico — it will appear as
 // "USB Serial Device (COMx)". Update this if the port number changes.
-static const char* COM_PORT = R"(\\.\COM9)";
+static const char* COM_PORT = R"(\\.\COM3)";
 static constexpr DWORD BAUD_RATE = 115200;
 
 // ---------------------------------------------------------------------------
