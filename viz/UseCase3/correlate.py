@@ -71,161 +71,193 @@ def load_keylog(path: str) -> pd.DataFrame:
                      encoding="cp1252", encoding_errors="replace")
     df["keyname"] = clean_keyname(df["keyname"])
     df["t1_ns"]   = df["t1_ns"].astype(np.int64)
-    return df.reset_index(drop=True)
+
+    # Filter out non-pattern keys (e.g. NACH-OBEN, EINGABE, STRG, C from
+    # window switching or run termination). Keep only keys that appear
+    # in the pattern so the greedy alignment is not misled by noise.
+    pattern_set = set(PATTERN)
+    n_before = len(df)
+    df = df[df["keyname"].isin(pattern_set)].reset_index(drop=True)
+    n_filtered = n_before - len(df)
+    if n_filtered > 0:
+        print(f"[LOAD] Filtered {n_filtered} non-pattern key(s) from keylog")
+
+    return df
 
 # ---------------------------------------------------------------------------
-# Sequence alignment
-# ---------------------------------------------------------------------------
-SEARCH_WINDOW = 24
-
-def align_sequences(serial: pd.DataFrame,
-                    keylog: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    s_chars = serial["char"].tolist()
-    k_chars = keylog["keyname"].tolist()
-
-    best_offset, best_score = 0, -1
-    for offset in range(SEARCH_WINDOW + 1):
-        n = min(len(s_chars), len(k_chars) - offset)
-        if n <= 0:
-            break
-        score = sum(s == k for s, k in
-                    zip(s_chars[:n], k_chars[offset:offset + n]))
-        if score > best_score:
-            best_score, best_offset = score, offset
-
-    if best_offset > 0:
-        print(f"[ALIGN] Trimmed {best_offset} leading row(s) from keylog")
-        keylog = keylog.iloc[best_offset:].reset_index(drop=True)
-        return serial, keylog
-
-    best_offset, best_score = 0, -1
-    for offset in range(1, SEARCH_WINDOW + 1):
-        n = min(len(s_chars) - offset, len(k_chars))
-        if n <= 0:
-            break
-        score = sum(s == k for s, k in
-                    zip(s_chars[offset:offset + n], k_chars[:n]))
-        if score > best_score:
-            best_score, best_offset = score, offset
-
-    if best_offset > 0:
-        print(f"[ALIGN] Trimmed {best_offset} leading row(s) from serial log")
-        serial = serial.iloc[best_offset:].reset_index(drop=True)
-
-    return serial, keylog
-
-# ---------------------------------------------------------------------------
-# Correlation
+# Correlation — gap-aware greedy alignment
+#
+# Naive positional join (row N of serial = row N of keylog) breaks
+# catastrophically when the OS misses a keypress: every subsequent row
+# is shifted by one and all comparisons fail. This is what happened in
+# UC3 where one mid-run stall propagated 5,759 false mismatches.
+#
+# Greedy alignment: walk both logs in order. When characters match,
+# record the pair and advance both pointers. When they differ, assume
+# the serial event was lost (not received by OS) and advance only the
+# serial pointer. Record the gap. The result has one row per OS-received
+# event, each correctly attributed to its generator origin, plus a
+# separate list of dropped events.
 # ---------------------------------------------------------------------------
 
 def correlate(serial: pd.DataFrame, keylog: pd.DataFrame) -> pd.DataFrame:
-    n = min(len(serial), len(keylog))
-    if len(serial) != len(keylog):
-        print(f"[WARN] Row count mismatch: serial={len(serial)}, "
-              f"keylog={len(keylog)}. Using first {n} rows.")
+    matched_rows = []
+    dropped_rows = []
+    si = ki = 0
+    n_serial, n_keylog = len(serial), len(keylog)
 
-    s = serial.iloc[:n].reset_index(drop=True)
-    k = keylog.iloc[:n].reset_index(drop=True)
+    while si < n_serial and ki < n_keylog:
+        s_row = serial.iloc[si]
+        k_row = keylog.iloc[ki]
+        if s_row["char"] == k_row["keyname"]:
+            matched_rows.append({
+                "seq":   int(s_row["seq"]),
+                "cycle": int(s_row["cycle"]),
+                "pos":   int(s_row["pos"]),
+                "char":  s_row["char"],
+                "gpio":  int(s_row["gpio"]),
+                "t0_ns": int(s_row["t0_ns"]),
+                "t1_ns": int(k_row["t1_ns"]),
+            })
+            si += 1
+            ki += 1
+        else:
+            # Serial event has no matching keylog event — assume OS missed it
+            dropped_rows.append({
+                "seq":   int(s_row["seq"]),
+                "cycle": int(s_row["cycle"]),
+                "pos":   int(s_row["pos"]),
+                "char":  s_row["char"],
+                "next_keylog": k_row["keyname"],
+            })
+            si += 1
 
-    mismatch_mask = s["char"] != k["keyname"]
-    n_miss = int(mismatch_mask.sum())
+    leftover_serial = n_serial - si
+    leftover_keylog = n_keylog - ki
 
-    if n_miss > 0:
-        print(f"[WARN] {n_miss} character mismatches. See correlation_errors.csv")
-        pd.DataFrame({
-            "row":         mismatch_mask[mismatch_mask].index.tolist(),
-            "serial_char": s.loc[mismatch_mask, "char"].tolist(),
-            "keylog_key":  k.loc[mismatch_mask, "keyname"].tolist(),
-        }).to_csv("correlation_errors.csv", index=False)
-    else:
-        print(f"[OK]  All {n} rows matched cleanly")
+    if dropped_rows:
+        n_drop = len(dropped_rows)
+        print(f"[WARN] {n_drop} serial event(s) had no matching OS event "
+              f"({100*n_drop/n_serial:.3f}% drop rate). See dropped_events.csv")
+        pd.DataFrame(dropped_rows).to_csv("dropped_events.csv", index=False)
 
-    t0 = s["t0_ns"].astype(np.int64)
-    t1 = k["t1_ns"].astype(np.int64)
+    if leftover_serial > 0:
+        print(f"[INFO] {leftover_serial} trailing serial event(s) ignored "
+              f"(keylog ended first — likely run-end truncation)")
+    if leftover_keylog > 0:
+        print(f"[INFO] {leftover_keylog} trailing keylog event(s) ignored "
+              f"(serial ended first)")
 
-    corr = pd.DataFrame({
-        "seq":          s["seq"],
-        "cycle":        s["cycle"],
-        "pos":          s["pos"],
-        "char":         s["char"],
-        "gpio":         s["gpio"],
-        "t0_ns":        t0,
-        "t1_ns":        t1,
-        "t_latency_ns": t1 - t0,
-        "valid":        ~mismatch_mask,
-    })
+    print(f"[OK]  {len(matched_rows)} events matched")
+
+    corr = pd.DataFrame(matched_rows)
+    corr["t_latency_ns"] = corr["t1_ns"] - corr["t0_ns"]
     corr["t_latency_ms"] = corr["t_latency_ns"] / 1_000_000.0
+    corr["valid"] = True
     return corr
 
 # ---------------------------------------------------------------------------
 # Clock offset correction + epoch sanity check
 #
-# The Pico t0 and Windows t1 have different clock origins so raw latency is
-# a large number. We subtract the median of the first cycle as a baseline.
+# The Pico t0 and Windows t1 have different clock origins so raw latency
+# (t1 - t0) is a large constant number plus jitter and slow drift.
 #
-# If the data contains rows from two different recording sessions (e.g. the
-# Windows QPC reset, or the run was stopped and restarted) the raw latency
-# values will form two distinct populations separated by millions of ms.
-# We detect this with an IQR-based gate BEFORE applying the offset so that
-# only the dominant population contributes to the baseline calculation, and
-# rows from the other population are dropped with a clear warning.
+# Two kinds of discontinuity can appear in the raw latency series:
+#
+# 1. Timebase resets: a clock on one side restarts (Pico USB re-enumerates,
+#    or Windows QPC reference shifts). Raw latency jumps by hundreds or
+#    thousands of seconds. Beyond this point the constant offset is
+#    different and a separate correction is needed.
+#
+# 2. Stalls: the OS misses one or more polling intervals, the host
+#    timestamp falls behind by hundreds of milliseconds to a few seconds,
+#    and either (a) the host catches up by delivering a burst of buffered
+#    events with sub-millisecond inter-arrival, or (b) a small number of
+#    events are lost and subsequent events resume at a permanently shifted
+#    baseline. Stalls are jitter, not a clock reset, and must remain in
+#    the data as outliers.
+#
+# We split into epochs only at jumps >5 seconds (clearly a reset). Within
+# each epoch we fit drift using a trimmed linear regression — the trim
+# excludes burst events from the fit so they appear correctly as outliers
+# in the residuals rather than dragging the trend line.
 # ---------------------------------------------------------------------------
 
 def apply_clock_offset(df: pd.DataFrame) -> tuple[pd.DataFrame, float]:
-    """
-    Correction pipeline with automatic Pico reset detection.
-
-    The Pico can reset mid-run if the USB serial port is closed and reopened,
-    causing time_us_64() to restart from zero. This creates a sudden large jump
-    in raw latency values (t1_ns - t0_ns) at the reset boundary. The correction
-    detects this jump, splits the data into epochs at the reset point, and
-    applies independent drift correction to each epoch before recombining.
-
-    Within each epoch:
-    1. Fit a linear regression over sequence number to measure drift rate.
-    2. Subtract the linear trend.
-    3. Subtract the median of the first 12 events of the epoch to centre
-       values around zero, exposing only the true OS jitter.
-
-    If no reset is detected the data is treated as a single epoch.
-    """
     df = df.copy().sort_values("seq").reset_index(drop=True)
     raw = df["t_latency_ns"].astype(np.int64)
     df["t_latency_ns_raw"] = raw
 
-    # ---- Detect Pico mid-run reset ------------------------------------------
-    # A reset appears as a sudden large negative jump in consecutive raw values.
-    # Threshold: any jump larger than 10 seconds is certainly a reset, not drift.
-    RESET_THRESHOLD_NS = 10_000_000_000   # 10 seconds
-    diffs = raw.diff().abs()
-    reset_candidates = diffs[diffs > RESET_THRESHOLD_NS]
+    # ---- Detect epoch boundaries: timebase resets + sustained steps -------
+    # We only split at jumps that produce a sustained baseline change. A
+    # transient excursion (host stalls then catches up via a buffered burst,
+    # then returns to the prior baseline) is a single epoch with outliers,
+    # not a new epoch.
+    #
+    # Test: compare the median of N events before and after a candidate jump.
+    # If they differ by more than the jump magnitude / 4 we treat it as
+    # sustained. This separates "stall + permanent shift" (split) from
+    # "stall + burst recovery" (don't split).
+    RESET_THRESHOLD_NS = 5_000_000_000   # 5 seconds — always a reset
+    STEP_THRESHOLD_NS  = 200_000_000     # 200 ms — candidate stall step
+    LOOKAROUND         = 50              # events on each side to compare
 
-    if len(reset_candidates) > 0:
-        reset_idx  = reset_candidates.index[0]
-        reset_seq  = int(df.loc[reset_idx, "seq"])
-        reset_cycle = int(df.loc[reset_idx, "cycle"])
-        print(f"[WARN] Pico mid-run reset detected at seq={reset_seq}, "
-              f"cycle={reset_cycle}.")
-        print(f"       Raw latency jumped by "
-              f"{diffs.loc[reset_idx]/1e9:.1f}s at this point.")
-        print(f"       Applying independent drift correction to each epoch.")
-        epochs = [
-            df[df["seq"] < reset_seq].copy(),
-            df[df["seq"] >= reset_seq].copy(),
-        ]
+    diffs = raw.diff().abs()
+    candidates = diffs[diffs > STEP_THRESHOLD_NS].index.tolist()
+    boundary_indices = []
+    for idx in candidates:
+        jump = diffs.loc[idx]
+        # Always split at very large jumps (timebase resets)
+        if jump > RESET_THRESHOLD_NS:
+            boundary_indices.append(idx)
+            continue
+        # For smaller jumps, check whether the baseline truly shifted
+        before = raw.iloc[max(0, idx - LOOKAROUND):idx]
+        after  = raw.iloc[idx:min(len(raw), idx + LOOKAROUND)]
+        if len(before) < 5 or len(after) < 5:
+            continue
+        shift = abs(after.median() - before.median())
+        if shift > jump / 4:
+            boundary_indices.append(idx)
+
+    if boundary_indices:
+        for idx in boundary_indices:
+            jump = diffs.loc[idx] / 1e6
+            seq = int(df.loc[idx, "seq"])
+            kind = "timebase reset" if diffs.loc[idx] > RESET_THRESHOLD_NS \
+                                    else "sustained baseline step"
+            print(f"[WARN] Epoch boundary at seq={seq} ({kind}, "
+                  f"jump = {jump:.1f} ms).")
+        boundaries = [0] + boundary_indices + [len(df)]
+        epochs = []
+        for i in range(len(boundaries) - 1):
+            start, end = boundaries[i], boundaries[i + 1]
+            epoch = df.iloc[start:end].copy()
+            if len(epoch) > 0:
+                epochs.append(epoch)
     else:
         epochs = [df.copy()]
 
-    # ---- Correct each epoch independently -----------------------------------
+    # ---- Robust drift fit per epoch ----------------------------------------
     def correct_single_epoch(edf, epoch_num):
-        raw_e   = edf["t_latency_ns"].astype(np.float64).values
-        seq_e   = edf["seq"].astype(np.float64).values
+        raw_e = edf["t_latency_ns"].astype(np.float64).values
+        seq_e = edf["seq"].astype(np.float64).values
 
-        slope, intercept = np.polyfit(seq_e, raw_e, 1)
+        if len(edf) < 100:
+            # Too short for trimmed fit — just demean
+            slope, intercept = 0.0, float(np.median(raw_e))
+        else:
+            # Trimmed regression: use only events between 10th and 90th
+            # percentile of raw latency for fitting. This excludes both
+            # bursts (above the 90th) and any negative outliers (below the
+            # 10th), giving a clean drift line through the bulk of the data.
+            lo, hi = np.quantile(raw_e, [0.10, 0.90])
+            mask = (raw_e >= lo) & (raw_e <= hi)
+            slope, intercept = np.polyfit(seq_e[mask], raw_e[mask], 1)
+
         trend    = slope * seq_e + intercept
         residual = raw_e - trend
-
-        # Centre on first 12 events of this epoch
+        # Centre on first 12 events of this epoch (after trend removal)
         anchor   = float(np.median(residual[:12]))
         corrected = residual - anchor
 
@@ -270,9 +302,18 @@ def apply_clock_offset(df: pd.DataFrame) -> tuple[pd.DataFrame, float]:
 def remove_outliers(df: pd.DataFrame,
                     col: str = "t_latency_ms",
                     sigma: float = 3.0) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """
+    Trim per-key outliers using a 3-sigma rule. Grouped by (pos, char) so
+    the two pattern occurrences of 'N' are treated as separate distributions.
+    """
     clean_parts, outlier_parts = [], []
-    for char in PATTERN:
-        grp = df[df["char"] == char]
+    seen = set()
+    for pos, char in enumerate(PATTERN):
+        key = (pos, char)
+        if key in seen:
+            continue
+        seen.add(key)
+        grp = df[(df["pos"] == pos) & (df["char"] == char)]
         if len(grp) == 0:
             continue
         mean = grp[col].mean()
@@ -290,7 +331,7 @@ def remove_outliers(df: pd.DataFrame,
         outliers = (pd.concat(outlier_parts).sort_values("seq")
                       .reset_index(drop=True))
         if len(outliers) > 0:
-            print(f"[INFO] {len(outliers)} outlier(s) removed (>{sigma}σ). "
+            print(f"[INFO] {len(outliers)} outlier(s) removed (>{sigma}σ per key). "
                   f"See outliers.csv")
             outliers.to_csv("outliers.csv", index=False)
     else:
@@ -302,19 +343,33 @@ def remove_outliers(df: pd.DataFrame,
 # ---------------------------------------------------------------------------
 
 def compute_stats(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Per-key statistics, grouped by (pos, char). The pattern contains
+    'N' twice (positions 7 and 10) which is the same physical key but
+    appears in different pattern slots; reporting them separately lets
+    the reader see whether the two pattern occurrences agree, which is
+    a useful check on the scan-matrix offset hypothesis.
+    """
     rows = []
-    for char in PATTERN:
-        grp = df[df["char"] == char]["t_latency_ms"]
+    seen = set()
+    # Iterate in pattern order so output rows match the typed sequence
+    for pos, char in enumerate(PATTERN):
+        key = (pos, char)
+        if key in seen:
+            continue
+        seen.add(key)
+        grp = df[(df["pos"] == pos) & (df["char"] == char)]["t_latency_ms"]
         if len(grp) == 0:
             continue
         rows.append({
+            "pos":       pos,
             "char":      char,
             "count":     len(grp),
             "mean_ms":   round(grp.mean(),         4),
-            "median_ms": round(grp.median(),        4),
-            "std_ms":    round(grp.std(),           4),
-            "min_ms":    round(grp.min(),           4),
-            "max_ms":    round(grp.max(),           4),
+            "median_ms": round(grp.median(),       4),
+            "std_ms":    round(grp.std(),          4),
+            "min_ms":    round(grp.min(),          4),
+            "max_ms":    round(grp.max(),          4),
             "p5_ms":     round(grp.quantile(0.05), 4),
             "p95_ms":    round(grp.quantile(0.95), 4),
         })
@@ -387,7 +442,9 @@ def plot_histogram(df: pd.DataFrame, out: str = "hist_latency.png") -> None:
 def plot_boxplot_per_key(df: pd.DataFrame,
                          out: str = "boxplot_per_key.png") -> None:
     fig, ax = plt.subplots(figsize=(13, 5))
-    data   = [df[df["char"] == c]["t_latency_ms"].values for c in PATTERN]
+    # One box per pattern position (so the two N's get separate boxes)
+    data   = [df[(df["pos"] == p) & (df["char"] == c)]["t_latency_ms"].values
+              for p, c in enumerate(PATTERN)]
     colors = [CHAR_COLOR[c] for c in PATTERN]
 
     bp = ax.boxplot(data, patch_artist=True, notch=False,
@@ -419,8 +476,9 @@ def plot_boxplot_per_key(df: pd.DataFrame,
 
 # ---------------------------------------------------------------------------
 # Plot 3 — Scatter stability
-# Subsample to max 5000 points to keep the plot readable at 12 000 events
-# Force y-axis to ±50ms
+# Two panels: full y-range to show all outliers/bursts, then clipped to
+# ±35ms to make normal jitter visible. A red cycle-mean line on the
+# clipped panel reveals baseline drift between cycles.
 # ---------------------------------------------------------------------------
 
 def plot_scatter_stability(df: pd.DataFrame,
@@ -431,23 +489,43 @@ def plot_scatter_stability(df: pd.DataFrame,
         print(f"[INFO] Scatter plot: subsampled to 5000 of {len(df)} points "
               f"for readability")
 
-    all_vals = df["t_latency_ms"]
-    y_lo = max(-50, all_vals.quantile(0.005) - 2)
-    y_hi = min(50,  all_vals.quantile(0.995) + 2)
+    fig, axes = plt.subplots(2, 1, figsize=(13, 8))
 
-    fig, ax = plt.subplots(figsize=(13, 4))
+    # ---- Top panel: full y range ----
+    ax = axes[0]
     for char in PATTERN:
         grp = plot_df[plot_df["char"] == char]
         ax.scatter(grp["seq"], grp["t_latency_ms"],
                    s=3, alpha=0.35, color=CHAR_COLOR[char], label=char,
                    linewidths=0)
-
-    ax.set_ylim(y_lo, y_hi)
-    ax.set_xlabel("Sequence number", fontsize=12)
-    ax.set_ylabel("Latency (ms)", fontsize=12)
-    ax.set_title("Latency stability over run", fontsize=13)
-    ax.legend(title="Key", ncol=4, fontsize=8, markerscale=2)
+    ax.axhline(0, color="black", linewidth=0.5, alpha=0.5)
+    ax.set_ylabel("Latency (ms)", fontsize=11)
+    ax.set_title("Latency stability — full y-range (shows bursts and tail events)",
+                 fontsize=12)
+    ax.legend(title="Key", ncol=6, fontsize=7, markerscale=2, loc="upper right")
     ax.grid(alpha=0.2)
+
+    # ---- Bottom panel: clipped y range with cycle mean ----
+    ax = axes[1]
+    for char in PATTERN:
+        grp = plot_df[plot_df["char"] == char]
+        ax.scatter(grp["seq"], grp["t_latency_ms"],
+                   s=3, alpha=0.35, color=CHAR_COLOR[char],
+                   linewidths=0)
+    # Cycle mean line
+    cycle_mean = df.groupby("cycle")["t_latency_ms"].mean()
+    cycle_seq  = df.groupby("cycle")["seq"].mean()
+    ax.plot(cycle_seq, cycle_mean, color="#C44E52", linewidth=0.8,
+            alpha=0.8, label="cycle mean")
+    ax.axhline(0, color="black", linewidth=0.5, alpha=0.5)
+    ax.set_ylim(-15, 35)
+    ax.set_xlabel("Sequence number", fontsize=11)
+    ax.set_ylabel("Latency (ms)", fontsize=11)
+    ax.set_title("Same data, y clipped to ±35 ms (shows normal jitter and baseline drift)",
+                 fontsize=12)
+    ax.legend(loc="upper right", fontsize=8)
+    ax.grid(alpha=0.2)
+
     fig.tight_layout()
     fig.savefig(out, dpi=FIGURE_DPI)
     plt.close(fig)
@@ -597,34 +675,39 @@ def main() -> None:
           f"| first: '{keylog['keyname'].iloc[0]}'  "
           f"last: '{keylog['keyname'].iloc[-1]}'")
 
-    print("[...] Aligning sequences...")
-    serial, keylog = align_sequences(serial, keylog)
-    print(f"      After alignment: serial={len(serial)}, keylog={len(keylog)}")
+    print("[...] Correlating (greedy gap-aware alignment)...")
+    corr = correlate(serial, keylog)
 
-    print("[...] Correlating...")
-    corr  = correlate(serial, keylog)
-    valid = corr[corr["valid"]].copy()
-    print(f"      {len(valid)} / {len(corr)} events valid after character check")
-
-    if len(valid) == 0:
-        print("\n[ERROR] No valid events. Check correlation_errors.csv")
+    if len(corr) == 0:
+        print("\n[ERROR] No matched events.")
         return
 
     print("[...] Applying clock offset correction...")
-    valid, offset_ns = apply_clock_offset(valid)
+    corr, offset_ns = apply_clock_offset(corr)
 
-    print("[...] Removing outliers...")
-    clean, _ = remove_outliers(valid, sigma=args.sigma)
-    print(f"      {len(clean)} clean events remain")
+    # Save the FULL corrected dataset including all outliers and burst events
+    corr.to_csv("correlated_all.csv", index=False)
+    print("[OUT] correlated_all.csv (all matched events, including outliers)")
 
+    # Also save a 3-sigma-trimmed version for distribution stats
+    clean, outliers = remove_outliers(corr, sigma=args.sigma)
+    print(f"      {len(clean)} events within 3-sigma per-key, "
+          f"{len(outliers)} outside")
     clean.to_csv("correlated.csv", index=False)
-    print("[OUT] correlated.csv")
+    print("[OUT] correlated.csv (3-sigma trimmed for distribution stats)")
 
     stats = compute_stats(clean)
     stats.to_csv("stats.csv", index=False)
     print("[OUT] stats.csv")
-    print("\n--- Per-key latency statistics (ms) ---")
+    print("\n--- Per-key latency statistics (ms, 3-sigma trimmed) ---")
     print(stats.to_string(index=False))
+
+    # Also report the un-trimmed worst-case events
+    extreme = corr.nlargest(20, "t_latency_ms")[
+        ["seq","cycle","pos","char","t_latency_ms"]]
+    extreme.to_csv("extreme_events.csv", index=False)
+    print("\n[OUT] extreme_events.csv (top 20 latency events, untrimmed)")
+    print(extreme.to_string(index=False))
 
     print("\n[...] Cross-validation...")
     cv = crossvalidate(serial, args.press_ms, args.interval_ms)
@@ -640,7 +723,7 @@ def main() -> None:
     print("\n[...] Generating plots...")
     plot_histogram(clean)
     plot_boxplot_per_key(clean)
-    plot_scatter_stability(clean)
+    plot_scatter_stability(corr)   # use untrimmed so bursts are visible
     plot_pattern_overlay(clean, args.press_ms, args.interval_ms,
                          args.max_overlay_cycles)
     plot_crossval(cv)
